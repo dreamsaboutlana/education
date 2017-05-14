@@ -24,5 +24,6 @@ var phoneUser = {
 	},
 	webSite: undefined,
 	skill: ['HTML5', 'CSS3', 'Less', 'Sass', 'Bootstrap', 'Gulp', 'JQuery'],
+	tag: ['easy going', 'good listener'],
 	blackListStatus: false
 }
