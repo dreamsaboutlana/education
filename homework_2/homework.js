@@ -9,10 +9,17 @@ let project = 'проект';
 let team = `команда`;
 let howMuch = 'Сколько';
 let sentence = 'нужно программистов чтобы сделать проект ?';
+let task1 = `${howMuch} ${sentence} ${numbers[1]}, ${numbers[0]}, ${team}`; 
+//Сколько нужно программистов чтобы сделать проект ? 1, 25, команда
 
+let task2 = `${howMuch} ${sentence} ${numbers}, ${team}`;
+//Сколько нужно программистов чтобы сделать проект ? 1,25, команда
 let newNumbers = numbers.reverse().join(', ');
-let task1 = `${howMuch} ${sentence} ${newNumbers}, ${team}`;
+let task3 = `${howMuch} ${sentence} ${newNumbers}, ${team}`;
+//Сколько нужно программистов чтобы сделать проект ? 1, 25, команда
 console.log(task1);
+console.log(task2);
+console.log(task3);
 
 /*
  2. Составьте предложение из представленного массива 
@@ -66,5 +73,5 @@ console.log(sliceString); // YouTube
 
 let frameworks = [4.7, 'Angular', '4Angular', 'React/Redux'];
 let x = `google released new version ${frameworks[1]} ${Math.floor(frameworks[0])}. But real speed is ${frameworks[frameworks.length - 1]}`;
-
+//google released new version Angular 4. But real speed is React/Redux
 console.log(x);
