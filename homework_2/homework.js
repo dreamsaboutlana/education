@@ -13,7 +13,7 @@ let task1 = `${howMuch} ${sentence} ${numbers[1]}, ${numbers[0]}, ${team}`;
 //Сколько нужно программистов чтобы сделать проект ? 1, 25, команда
 
 let task2 = `${howMuch} ${sentence} ${numbers}, ${team}`;
-//Сколько нужно программистов чтобы сделать проект ? 1,25, команда
+//Сколько нужно программистов чтобы сделать проект ? 25,1, команда
 let newNumbers = numbers.reverse().join(', ');
 let task3 = `${howMuch} ${sentence} ${newNumbers}, ${team}`;
 //Сколько нужно программистов чтобы сделать проект ? 1, 25, команда
