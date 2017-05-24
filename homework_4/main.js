@@ -9,8 +9,7 @@ function numbersBetween(a, b) {
 		console.log("A or B is not a number!");
 	}
 	for ( let i = a + 1; i < b; i++) {
-		let newElem = i;
-		arr.push(newElem);
+		arr.push(i);
 	}
 	return arr;
 }
@@ -88,31 +87,33 @@ console.log(array); // [ {age:NaN}, {age:3}, {age:NaN}, {age:5}, {age:NaN}, {age
 console.log(array.length); // 35
 
 function solution(arr) {
-	for( let i = 0; i < arr.length; i++){
+	for (let i = 0; i < arr.length; i++){
 		let value = arr[i];
 		 if (value.age !== undefined && isNaN(value.age)){
-			value.age = {unknownAge: true};
+			value.unknownAge = true;
 		 }
 	}
 	return arr;
 }
 
-solution(array);
+// let  unkArr = solution(array);
+// console.log(unkArr);
 
 let arr = ['privet', 12, {}, [1, 2]];
 let arr2 = ['privet', 12, {}, [1, 2]];
 
 function returnArr(arr) {
 	let newArr =[];
-	for( let i = 0; i < arr.length; i++) {
-		if (typeof(arr[i].age) === 'object') {
-			let newElem = arr[i];
-			newArr.push(newElem);
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i].unknownAge) {
+			newArr.push(arr[i]);
 		} 
 	}
 	return newArr;
 }
-returnArr(array);
+
+let newArray = returnArr(solution(array));
+console.log(newArray);
 
 returnArr(arr);
 returnArr(arr2);
