@@ -25,11 +25,20 @@ addToArray([1,2,3], 5);
 */
 
 function simpleObjectGenerator(param1, param2, param3) {
-  let obj = {};
-  obj.argument1 = param1;
-  obj.argument2 = param2;
-  obj.argument3 = param3;
-  return obj;
+
+	// 1 way
+  // let obj = {};
+  // obj.argument1 = param1;
+  // obj.argument2 = param2;
+  // obj.argument3 = param3; 
+  // return obj;
+
+// 2 way
+  return  {
+	  argument1: param1;
+	  argument2: param2;
+	  argument3: param3; 
+  }
 }
 
 console.log(simpleObjectGenerator('protocol', { url: '22' }, 8000));
@@ -105,7 +114,7 @@ function fizzBuzz(num) {
   } else if( num % 5 == 0){
     console.log('Buzz');
   } else{
-    console.log(num);
+    // console.log(num);// нет необходимости в этом выводе
   }
 }
 
@@ -130,10 +139,14 @@ function setFunction(arr) {
 }
 
 function setArg(arg1, arg2, arg3, func) {
-  var arr = [];
-  arr[0] = arg1;
-  arr[1] = arg2;
-  arr[2] = arg3;
+	// goog way
+	var arr = [arg1, arg2, arg3];
+
+	// bad way
+	// var arr = [];
+	// arr[0] = arg1;
+	// arr[1] = arg2;
+	// arr[2] = arg3;
 
  return func(arr);
 }
