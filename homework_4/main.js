@@ -4,14 +4,14 @@
  */
 
 function numbersBetween(a, b) {
-	let arr = [];
-	if( typeof(a) === "string" || typeof(b) === "string") {
-		console.log("A or B is not a number!");
-	}
-	for ( let i = a + 1; i < b; i++) {
-		arr.push(i);
-	}
-	return arr;
+  let arr = [];
+  if (typeof(a) === "string" || typeof(b) === "string") {
+    console.log("A or B is not a number!");
+  }
+  for (let i = a + 1; i < b; i++) {
+    arr.push(i);
+  }
+  return arr;
 }
 
 console.log(numbersBetween(1, 5)); // 2,3,4
@@ -24,24 +24,21 @@ console.log(numbersBetween(10, 15)); // 11, 12, 13, 14
  Расчет чисел должен идти до 100 
  */
 function fizzBuzz(num) {
-	for(let i = 0; i < num; i++){
+  for (let i = 0; i < num; i++) {
 
-	  if(i % 3 == 0 && i % 5 == 0 ){
-	    console.log(`FizzBuzz. Число ${i} делится на 3 и на 5`);
-	    // console.log('FizzBuzz. Число ' + i + ' делится на 3 и на 5');
+    if (i % 3 == 0 && i % 5 == 0) {
+      console.log(`FizzBuzz. Число ${i} делится на 3 и на 5`);
 
-	  } else if(i % 3 ==0){
-	    console.log(`Fizz. Число ${i} делится на 3`);
-	    // console.log('Fizz. Число ' + i + ' делится на 3');
+    } else if (i % 3 == 0) {
+      console.log(`Fizz. Число ${i} делится на 3`);
 
-	  } else if( i % 5 == 0){
-	    console.log(`Buzz. Число ${i} делится на 5`);
-	    // console.log('Buzz. Число ' + i + ' делится на 5');
+    } else if (i % 5 == 0) {
+      console.log(`Buzz. Число ${i} делится на 5`);
 
-	  } else{
-	    // console.log(`Число ${i} не подходит под условие`);
-	  }
-	}
+    } else {
+      // console.log(`Число ${i} не подходит под условие`);
+    }
+  }
 }
 
 fizzBuzz(100);
@@ -54,17 +51,17 @@ fizzBuzz(100);
 let arr = [1, null, undefined, 'str', {}, [], function() {}];
 
 function returnArrType(arr) {
-	var newArr = [];
+  var newArr = [];
 
-	for( let i = 0; i < arr.length; i++ ){
-		let newElem = typeof(arr[i]);
-		newArr.push(newElem	);
-	}
+  for (let i = 0; i < arr.length; i++) {
+    let newElem = typeof(arr[i]);
+    newArr.push(newElem);
+  }
 
-	return newArr;
+  return newArr;
 }
 
-returnArrType(arr); 
+returnArrType(arr);
 //["number", "object", "undefined", "string", "object", "object", "function"]
 
 /*
@@ -79,41 +76,26 @@ returnArrType(arr);
  содержащий все объекты содержащие свойство unknownAge:true
  */
 
-let array = Array.from({ length: 35 }).map(
-  (value, index) => (index % 2 ? { age: index + 2 } : { age: NaN })
+let array = Array.from({ length: 35 }).map((value, index) => (index % 2 ? { age: index + 2 } : { age: NaN })
 );
 
-console.log(array); // [ {age:NaN}, {age:3}, {age:NaN}, {age:5}, {age:NaN}, {age:7} ....]
-console.log(array.length); // 35
-
 function solution(arr) {
-	for (let i = 0; i < arr.length; i++){
-		let value = arr[i];
-		 if (value.age !== undefined && isNaN(value.age)){
-			value.unknownAge = true;
-		 }
-	}
-	return arr;
+  for (let i = 0; i < arr.length; i++) {
+    let value = arr[i];
+    if (value.age !== undefined && isNaN(value.age)) {
+      value.unknownAge = true;
+    }
+  }
+  return arr;
 }
-
-// let  unkArr = solution(array);
-// console.log(unkArr);
-
-let arr = ['privet', 12, {}, [1, 2]];
-let arr2 = ['privet', 12, {}, [1, 2]];
 
 function returnArr(arr) {
-	let newArr =[];
-	for (let i = 0; i < arr.length; i++) {
-		if (arr[i].unknownAge) {
-			newArr.push(arr[i]);
-		} 
-	}
-	return newArr;
+  let newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].unknownAge) {
+      newArr.push(arr[i]);
+    }
+  }
+  return newArr;
 }
-
 let newArray = returnArr(solution(array));
-console.log(newArray);
-
-returnArr(arr);
-returnArr(arr2);
