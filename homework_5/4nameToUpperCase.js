@@ -11,8 +11,8 @@ let arr = ['jo', 'nelson', 'jurie'];
 function nameToUpperCase(arr) {
   let helpArr = [];
   for (let i = 0; i < arr.length; i++) {
-    let elem = arr[i].slice(0, 1).toUpperCase() + arr[i].slice(1).toLowerCase();
-    helpArr.push(elem);
+    let value = arr[i].slice(0, 1).toUpperCase() + arr[i].slice(1).toLowerCase();
+    helpArr.push(value);
   }
   return helpArr;
 }
