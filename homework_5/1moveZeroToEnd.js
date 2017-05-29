@@ -33,7 +33,7 @@ function moveZeroToEnd(arr) {
 
 }
 
-console.log(moveZeroToEnd(arr1));
+// console.log(moveZeroToEnd(arr1));
 
 // 2
 function moveZeroToEnd2(arr) {
@@ -51,4 +51,23 @@ function moveZeroToEnd2(arr) {
 
 }
 
-console.log(moveZeroToEnd2(arr1));
+// console.log(moveZeroToEnd2(arr1));
+
+// 3
+function moveZeroToEnd3(arr) {
+let zeroArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    let value = arr[i];
+
+    if (value !== 0) {
+      continue;
+    }
+      arr.splice(i, 1);
+      zeroArr.push(value);
+  }
+
+  return arr.concat(zeroArr);
+
+}
+
+console.log(moveZeroToEnd3(arr1));
