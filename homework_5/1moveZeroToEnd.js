@@ -11,6 +11,7 @@
 
 let arr1 = [1, false, 2, 0, 3, null, 0, 4, 0, 25];
 
+// 1
 function moveZeroToEnd(arr) {
 
   let newArr = [];
@@ -23,7 +24,6 @@ function moveZeroToEnd(arr) {
     if (value !== 0) {
       newArr.push(value);
     } else {
-    // }
       zeroArr.push(value);
     }
 
@@ -34,3 +34,21 @@ function moveZeroToEnd(arr) {
 }
 
 console.log(moveZeroToEnd(arr1));
+
+// 2
+function moveZeroToEnd2(arr) {
+
+  for (let i = 0; i < arr.length; i++) {
+    let value = arr[i];
+
+    if (value === 0) {
+      arr.splice(i, 1);
+      arr.push(value);
+    }
+  }
+
+  return arr;
+
+}
+
+console.log(moveZeroToEnd2(arr1));
