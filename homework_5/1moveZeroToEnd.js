@@ -18,12 +18,12 @@ function moveZeroToEnd(arr) {
 
   for (let i = 0; i < arr.length; i++) {
 
-    let index = arr[i];
+    let value = arr[i];
 
-    if (index !== 0) {
-      newArr.push(index);
+    if (value !== 0) {
+      newArr.push(value);
     } else {
-      zeroArr.push(index);
+      zeroArr.push(value);
     }
 
   }
