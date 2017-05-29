@@ -23,6 +23,7 @@ function moveZeroToEnd(arr) {
     if (value !== 0) {
       newArr.push(value);
     } else {
+    // }
       zeroArr.push(value);
     }
 
