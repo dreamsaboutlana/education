@@ -10,6 +10,7 @@
  */
 
 let arr1 = [1, false, 2, 0, 3, null, 0, 4, 0, 25];
+let arr2 = ['a', 0,0,0, 0, 'b', null, 'c', 'd', 0, 1, false, 0, 1, 0, 3, [], 0, 1, 9, 0, 0, {}, 0, 0, 9];
 
 // 1
 function moveZeroToEnd(arr) {
@@ -33,41 +34,23 @@ function moveZeroToEnd(arr) {
 
 }
 
-// console.log(moveZeroToEnd(arr1));
+// console.log(moveZeroToEnd(arr2));
 
 // 2
 function moveZeroToEnd2(arr) {
+  let zeroArr = [];
 
   for (let i = 0; i < arr.length; i++) {
     let value = arr[i];
 
-    if (value === 0) {
-      arr.splice(i, 1);
-      arr.push(value);
-    }
-  }
-
-  return arr;
-
-}
-
-// console.log(moveZeroToEnd2(arr1));
-
-// 3
-function moveZeroToEnd3(arr) {
-let zeroArr = [];
-  for (let i = 0; i < arr.length; i++) {
-    let value = arr[i];
-
-    if (value !== 0) {
-      continue;
-    }
+    if (arr[i] === 0) {
       arr.splice(i, 1);
       zeroArr.push(value);
+      --i;
+    }
   }
 
   return arr.concat(zeroArr);
-
 }
 
-console.log(moveZeroToEnd3(arr1));
+console.log(moveZeroToEnd2(arr2));
