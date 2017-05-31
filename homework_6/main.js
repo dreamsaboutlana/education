@@ -424,7 +424,7 @@ function wordCounter(sentence) {
  }
  */
 
-//console.log(wordCounter('asd qwe asd'));
+// console.log(wordCounter('asd qwe asd'));
 /*
  {
  asd:2
@@ -472,12 +472,17 @@ function createHashTags(arr) {
  *
  * */
 
-//function uniqueElements(arr) {
-//  //ES2015
+function uniqueElements(arr) {
 
-//}
-//
-//let notUniqArray = [1, 1, 2, 2, 2, 5, 10, 25, 30, 5, 1, 0, 22, 3, 10, 3];
-//
-//console.log(uniqueElements(notUniqArray)); //1,2,5,10,25,30,0,22,3,
-//console.log(uniqueElements([1, 1, 2, 3, 3])); // 1,2,3
+  let uniqueArray = arr.filter(function(elem, pos) {
+    return arr.indexOf(elem) == pos;
+  });
+  
+  return uniqueArray;
+
+}
+
+let notUniqArray = [1, 1, 2, 2, 2, 5, 10, 25, 30, 5, 1, 0, 22, 3, 10, 3];
+
+// console.log(uniqueElements(notUniqArray)); //1,2,5,10,25,30,0,22,3,
+// console.log(uniqueElements([1, 1, 2, 3, 3])); // 1,2,3
