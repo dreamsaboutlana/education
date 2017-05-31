@@ -289,7 +289,7 @@ function countLetterA(argument) {
   let newArgument = argument.split('');
 
   newArgument.forEach(function(elem, index, arr) {
-    if (argument[index] === 'a' || argument[index] === 'A') {
+    if (argument[index] === 'a') {
       return counter++;
     }
   });
@@ -300,8 +300,6 @@ function countLetterA(argument) {
 
 // console.log(countLetterA(randomString)); // 4
 // console.log(countLetterA(user.name + javaScript.html)); // 3
-// console.log(countLetterA('A beautiful thing')); // 3
-
 
 /// ! ! ! ! ! ! ! ! ! ! !
 /*
@@ -396,18 +394,23 @@ function reverseStr(str, booleanValue) {
 function wordCounter(sentence) {
 
   let newArr = sentence.split(' ');
-  let counter = 0;
   let obj = {};
 
-  newArr.filter(function(elem, index, arr) {
+  newArr.map(function(elem, index, arr) {
 
+    let counter = 0;
     let param = elem;
-    if (elem === param) {
-      return obj[elem] = ++counter;
-    }
+
+    arr.forEach(function(value, i, array) {
+      if (value === param) {
+        return obj[value] = ++counter;
+      }
+    });
 
   });
+
   return obj;
+
 }
 
 // console.log(wordCounter('Both Java and Java Script is programming and programming OOPBased Language'));
@@ -432,7 +435,7 @@ function wordCounter(sentence) {
  }
  * */
 
-//console.log(wordCounter('url http url www url http'));
+// console.log(wordCounter('url http url www url http'));
 
 /*
  {
@@ -477,7 +480,7 @@ function uniqueElements(arr) {
   let uniqueArray = arr.filter(function(elem, pos) {
     return arr.indexOf(elem) == pos;
   });
-  
+
   return uniqueArray;
 
 }
