@@ -298,9 +298,9 @@ function countLetterA(argument) {
 
 }
 
-console.log(countLetterA(randomString)); // 4
-console.log(countLetterA(user.name + javaScript.html)); // 3
-console.log(countLetterA('A beautiful thing')); // 3
+// console.log(countLetterA(randomString)); // 4
+// console.log(countLetterA(user.name + javaScript.html)); // 3
+// console.log(countLetterA('A beautiful thing')); // 3
 
 
 /// ! ! ! ! ! ! ! ! ! ! !
@@ -312,16 +312,23 @@ console.log(countLetterA('A beautiful thing')); // 3
  *
  * */
 
+function reverseEachWord(str) {
 
-function reverseEachWord() {
+  let newStr = str.split(' ');
+  let addStr = ' ';
+
+  newStr.filter(function(elem, index, arr) {
+    addStr += elem.split('').reverse().join('') + ' ';
+  });
+
+  return addStr;
 
 }
-
 // console.log(reverseEachWord('You don\'t have to do anything special to begin using the DOM. Different browsers have different implementations of the DOM'));
 // uoY t'nod evah ot od gnihtyna laiceps ot nigeb gnisu eht .MOD tnereffiD sresworb evah tnereffid snoitatnemelpmi fo eht MOD
 
 
-//console.log(reverseEachWord('The Document Object Model (DOM) is a programming interface for HTML and XML documents'));
+// console.log(reverseEachWord('The Document Object Model (DOM) is a programming interface for HTML and XML documents'));
 // ehT tnemucoD tcejbO ledoM )MOD( si a gnimmargorp ecafretni rof LMTH dna LMX stnemucod
 
 
