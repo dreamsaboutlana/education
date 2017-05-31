@@ -327,9 +327,29 @@ function reverseEachWord(str) {
 // console.log(reverseEachWord('You don\'t have to do anything special to begin using the DOM. Different browsers have different implementations of the DOM'));
 // uoY t'nod evah ot od gnihtyna laiceps ot nigeb gnisu eht .MOD tnereffiD sresworb evah tnereffid snoitatnemelpmi fo eht MOD
 
-
 // console.log(reverseEachWord('The Document Object Model (DOM) is a programming interface for HTML and XML documents'));
 // ehT tnemucoD tcejbO ledoM )MOD( si a gnimmargorp ecafretni rof LMTH dna LMX stnemucod
+
+//переворвчивать все слова в строке или нет
+
+function reverseEachWordOrNot(str, booleanValue) {
+  if (booleanValue === true) {
+
+    let newStr = str.split(' ');
+    let addStr = ' ';
+
+    newStr.filter(function(elem, index, arr) {
+      addStr += elem.split('').reverse().join('') + ' ';
+    });
+
+    return addStr;
+  }
+
+  return str;
+
+}
+// console.log(reverseEachWordOrNot('Hi my Name is', true));// iH ym emaN si 
+// console.log(reverseEachWordOrNot('Hi my Name is', false));//Hi my Name is
 
 
 /* TASK 3
@@ -338,14 +358,29 @@ function reverseEachWord(str) {
  * переворачиваются в обратном порядке
  * */
 
+function reverseStr(str, booleanValue) {
+  if( booleanValue=== true){
 
-//console.log(reverseEachWord('You don\'t have to do anything special to begin using the DOM. Different browsers have different implementations of the DOM', true));
+  let newStr = str.split('').reverse();
+  let addStr = '';
+
+  newStr.filter(function(elem, index, arr) {
+    addStr += elem.split('').reverse().join('') + '';
+  });
+
+  return addStr;
+  }
+  return str;
+}
+
+// console.log(reverseStr('You don\'t have to do anything special to begin using the DOM. Different browsers have different implementations of the DOM', true));
 //MOD eht fo snoitatnemelpmi tnereffid evah sresworb tnereffiD .MOD eht gnisu nigeb ot laiceps gnihtyna od ot evah t'nod uoY
-//console.log(reverseEachWord('The Document Object Model (DOM) is a programming interface for HTML and XML documents', true));
+// console.log(reverseStr('The Document Object Model (DOM) is a programming interface for HTML and XML documents', true));
 // stnemucod LMX dna LMTH rof ecafretni gnimmargorp a si )MOD( ledoM tcejbO tnemucoD ehT
 
-//console.log(reverseEachWord('Hi my Name is', false));
-// iH ym emaN si
+// console.log(reverseStr('Hi my Name is', false));//Hi my Name is
+// console.log(reverseStr('Hi my Name is', true));// si emaN ym iH
+
 
 
 /* TASK 3
