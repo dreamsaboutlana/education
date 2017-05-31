@@ -359,17 +359,18 @@ function reverseEachWordOrNot(str, booleanValue) {
  * */
 
 function reverseStr(str, booleanValue) {
-  if( booleanValue=== true){
+  if (booleanValue === true) {
 
-  let newStr = str.split('').reverse();
-  let addStr = '';
+    let newStr = str.split('').reverse();
+    let addStr = '';
 
-  newStr.filter(function(elem, index, arr) {
-    addStr += elem.split('').reverse().join('') + '';
-  });
+    newStr.filter(function(elem, index, arr) {
+      addStr += elem.split('').reverse().join('');
+    });
 
-  return addStr;
+    return addStr;
   }
+
   return str;
 }
 
@@ -392,9 +393,22 @@ function reverseStr(str, booleanValue) {
 
 //Both - Java - and - Java - Script - is - programming - and - programming - OOPBased
 
-//function wordCounter(sentence) {
+function wordCounter(sentence) {
 
-//}
+  let newArr = sentence.split(' ');
+  let counter = 0;
+  let obj = {};
+
+  newArr.filter(function(elem, index, arr) {
+
+    let param = elem;
+    if (elem === param) {
+      return obj[elem] = ++counter;
+    }
+
+  });
+  return obj;
+}
 
 // console.log(wordCounter('Both Java and Java Script is programming and programming OOPBased Language'));
 /*
@@ -438,10 +452,16 @@ function reverseStr(str, booleanValue) {
  */
 
 function createHashTags(arr) {
+  let obj = {};
 
+  let newArr = arr.filter(function(elem, index, arr) {
+    obj[elem._id] = elem.company;
+  })
+
+  return obj;
 }
 
-//console.log(createHashTags(listOfCompanys));
+// console.log(createHashTags(listOfCompanys));
 //{"584babb6eeb4137cf14c37a3":"ASIMILINE", 584babb6eeb4137cf14c37a3:'Company2', }
 
 // @ SUPER
