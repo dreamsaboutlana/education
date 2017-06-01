@@ -298,8 +298,8 @@ function countLetterA(argument) {
 
 }
 
-console.log(countLetterA(randomString)); // 4
-console.log(countLetterA(user.name + javaScript.html)); // 3
+// console.log(countLetterA(randomString)); // 4
+// console.log(countLetterA(user.name + javaScript.html)); // 3
 
 /// ! ! ! ! ! ! ! ! ! ! !
 /*
@@ -313,13 +313,15 @@ console.log(countLetterA(user.name + javaScript.html)); // 3
 function reverseEachWord(str) {
 
   let newStr = str.split(' ');
-  let addStr = ' ';
+  let addStr = [];
 
   newStr.filter(function(elem, index, arr) {
-    addStr += elem.split('').reverse().join('') + ' ';
+
+    addStr.push(elem.split('').reverse().join(''));
+
   });
 
-  return addStr;
+  return addStr.join(' ');
 
 }
 // console.log(reverseEachWord('You don\'t have to do anything special to begin using the DOM. Different browsers have different implementations of the DOM'));
@@ -330,52 +332,76 @@ function reverseEachWord(str) {
 
 //переворвчивать все слова в строке или нет
 
-function reverseEachWordOrNot(str, booleanValue) {
-  if (booleanValue === true) {
+// function reverseEachWordOrNot(str, booleanValue) {
+//   if (booleanValue === true) {
 
-    let newStr = str.split(' ');
-    let addStr = ' ';
+//     let newStr = str.split(' ');
+//     let addStr = ' ';
 
-    newStr.filter(function(elem, index, arr) {
-      addStr += elem.split('').reverse().join('') + ' ';
-    });
+//     newStr.filter(function(elem, index, arr) {
+//       addStr += elem.split('').reverse().join('') + ' ';
+//     });
 
-    return addStr;
-  }
+//     return addStr;
+//   }
 
-  return str;
+//   return str;
 
-}
+// }          
 // console.log(reverseEachWordOrNot('Hi my Name is', true));// iH ym emaN si 
 // console.log(reverseEachWordOrNot('Hi my Name is', false));//Hi my Name is
 
 
-/* TASK 3
+/* TASK 2.1 
  * Добавьте в функцию reverseEachWord второй параметр,
  * данный параметр булево, если true - тогда предложение так же 
  * переворачиваются в обратном порядке
  * */
 
+function reverseEachWord(str, booleanValue) {
+
+  let newStr = str.split(' ');
+  let addStr = [];
+
+  newStr.filter(function(elem, index, arr) {
+
+    if (booleanValue === true) {
+
+      addStr.unshift(elem.split('').reverse().join(''));
+
+    } else {
+
+      addStr.push(elem.split('').reverse().join(''));
+
+    }
+
+  });
+
+  return addStr.join(' ');
+
+}
+
+// console.log(reverseEachWord('You don\'t have to do anything special to begin using the DOM. Different browsers have different implementations of the DOM', true));
+//MOD eht fo snoitatnemelpmi tnereffid evah sresworb tnereffiD .MOD eht gnisu nigeb ot laiceps gnihtyna od ot evah t'nod uoY
+// console.log(reverseEachWord('The Document Object Model (DOM) is a programming interface for HTML and XML documents', true));
+// stnemucod LMX dna LMTH rof ecafretni gnimmargorp a si )MOD( ledoM tcejbO tnemucoD ehT
+// console.log(reverseEachWord('The Document Object Model (DOM) is a programming interface for HTML and XML documents', false));
+
+
 function reverseStr(str, booleanValue) {
+
   if (booleanValue === true) {
 
-    let newStr = str.split('').reverse();
-    let addStr = '';
-
-    newStr.filter(function(elem, index, arr) {
-      addStr += elem.split('').reverse().join('');
-    });
-
-    return addStr;
+    return reverseEachWord(str).split(' ').reverse().join(' ');
   }
-
-  return str;
-}
+  return reverseEachWord(str);
+};
 
 // console.log(reverseStr('You don\'t have to do anything special to begin using the DOM. Different browsers have different implementations of the DOM', true));
 //MOD eht fo snoitatnemelpmi tnereffid evah sresworb tnereffiD .MOD eht gnisu nigeb ot laiceps gnihtyna od ot evah t'nod uoY
 // console.log(reverseStr('The Document Object Model (DOM) is a programming interface for HTML and XML documents', true));
 // stnemucod LMX dna LMTH rof ecafretni gnimmargorp a si )MOD( ledoM tcejbO tnemucoD ehT
+// console.log(reverseStr('The Document Object Model (DOM) is a programming interface for HTML and XML documents', false));
 
 // console.log(reverseStr('Hi my Name is', false));//Hi my Name is
 // console.log(reverseStr('Hi my Name is', true));// si emaN ym iH
@@ -402,9 +428,11 @@ function wordCounter(sentence) {
     let param = elem;
 
     arr.forEach(function(value, i, array) {
+
       if (value === param) {
-        return obj[value] = ++counter;
+        obj[value] = ++counter;
       }
+      
     });
 
   });
@@ -413,7 +441,7 @@ function wordCounter(sentence) {
 
 }
 
-// console.log(wordCounter('Both Java and Java Script is programming and programming OOPBased Language'));
+console.log(wordCounter('Both Java and Java Script is programming and programming OOPBased Language'));
 /*
  {
  Both:1,
@@ -457,7 +485,7 @@ function wordCounter(sentence) {
 function createHashTags(arr) {
   let obj = {};
 
-  let newArr = arr.filter(function(elem, index, arr) {
+  let newArr = arr.forEach(function(elem, index, arr) {
     obj[elem._id] = elem.company;
   })
 
