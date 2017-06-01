@@ -441,7 +441,7 @@ function wordCounter(sentence) {
 
 }
 
-console.log(wordCounter('Both Java and Java Script is programming and programming OOPBased Language'));
+// console.log(wordCounter('Both Java and Java Script is programming and programming OOPBased Language'));
 /*
  {
  Both:1,
@@ -516,4 +516,4 @@ function uniqueElements(arr) {
 let notUniqArray = [1, 1, 2, 2, 2, 5, 10, 25, 30, 5, 1, 0, 22, 3, 10, 3];
 
 // console.log(uniqueElements(notUniqArray)); //1,2,5,10,25,30,0,22,3,
-// console.log(uniqueElements([1, 1, 2, 3, 3])); // 1,2,3
+console.log(uniqueElements([1, 1, 2, 3, 3])); // 1,2,3
