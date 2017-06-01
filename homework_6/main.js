@@ -290,7 +290,7 @@ function countLetterA(argument) {
 
   newArgument.forEach(function(elem, index, arr) {
     if (argument[index] === 'a') {
-      return counter++;
+      counter++;
     }
   });
 
@@ -298,8 +298,8 @@ function countLetterA(argument) {
 
 }
 
-// console.log(countLetterA(randomString)); // 4
-// console.log(countLetterA(user.name + javaScript.html)); // 3
+console.log(countLetterA(randomString)); // 4
+console.log(countLetterA(user.name + javaScript.html)); // 3
 
 /// ! ! ! ! ! ! ! ! ! ! !
 /*
