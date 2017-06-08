@@ -50,12 +50,12 @@ function patternModule() {
 
 }
 
-let test = patternModule();// 0
-console.log(test.method()); //1
-console.log(test.method()); //2
-console.log(test.clear()); //2
-console.log(test.method()); //2
-console.log(test.method()); //3
+let test = patternModule(); // 0
+// console.log(test.method()); //1
+// console.log(test.method()); //2
+// console.log(test.clear()); //2
+// console.log(test.method()); //2
+// console.log(test.method()); //3
 
 // @SUPER
 
@@ -77,20 +77,35 @@ console.log(test.method()); //3
 let jun = {};
 
 function methodCounter(obj, name, num, fn) {
-  // Ваш код !
+
+  let counter = num;
+  obj[name] = function(...args) {
+    if(counter ===0){
+      console.log('ERROR');
+      return;
+    }
+    counter--;
+    fn(args);
+  };
+  obj.addCounter = function(newCount){
+    counnter = newCount;
+  }
 }
 
 methodCounter(jun, 'logger', 2, function(args) {
+
   let sum = args.reduce(function(a, b) {
-    return a + b
+    return a + b;
+
   }, 0);
   console.log(sum);
+
 });
 
-
-// jun.logger(1, 2, 3, 4); // 2, 10
-// jun.logger(5, 5, 5, 5); // 1, 20
-// jun.logger(5, 5); // ERROR ! add more methods
+console.log(jun.logger([1, 2, 3, 4])); // 2, 10
+console.log(jun.logger([5, 5, 5, 5])); // 1, 20
+console.log(jun.logger([5, 5])); // ERROR ! add more methods
+console.log(jun.addCounter(5)); // ERROR ! add more methods
 
 // @SUPER - PUPER,
 /*
