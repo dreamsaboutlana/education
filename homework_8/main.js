@@ -37,7 +37,11 @@ let stringBuffer = makeBuffer();
  *
  * */
 
-function validBraces(str) {}
+function validBraces(str) {
+
+
+
+}
 
 validBraces('(){}[]'); //=> returns true
 validBraces('(}'); //=> returns false
@@ -55,11 +59,21 @@ validBraces('([{}])'); //=> returns true
  * */
 
 function makeCallback(fn) {
+
   for (let i = 1; i <= 10; i++) {
     setTimeout(function() {
       console.log(i);
+
     }, i * 1000);
+
+    if (i === 10) {
+      setTimeout(function() {
+        fn()
+      }, i * 1000);
+    }
   }
+
+
 }
 
 makeCallback(function() {
