@@ -39,14 +39,27 @@ let stringBuffer = makeBuffer();
 
 function validBraces(str) {
 
+  let arr = [];
+  let open = { '{': '}', '[': ']', '(': ')' };
+  let closed = { '}': true, ']': true, ')': true };
 
+  for (let i = 0; i < str.length; i++) {
+    let chr = str[i];
+    if (open[chr]) {
+      arr.push(chr);
+    } else if (closed[chr]) {
+      if (open[arr.pop()] !== chr) return false;
+    }
+  }
 
-}
+  return arr.length === 0;
 
-validBraces('(){}[]'); //=> returns true
-validBraces('(}'); //=> returns false
-validBraces('[(])'); // => returns false
-validBraces('([{}])'); //=> returns true
+};
+
+// console.log(validBraces('(){}[]')); //=> returns true
+// console.log(validBraces('(}')); //=> returns false
+// console.log(validBraces('[(])')); // => returns false
+// console.log(validBraces('([{}])')); //=> returns true
 
 /*
  *
@@ -62,22 +75,19 @@ function makeCallback(fn) {
 
   for (let i = 1; i <= 10; i++) {
     setTimeout(function() {
-      console.log(i);
+      // console.log(i);
 
     }, i * 1000);
-
     if (i === 10) {
       setTimeout(function() {
-        fn()
+        fn();
       }, i * 1000);
     }
   }
-
-
 }
 
 makeCallback(function() {
-  console.log('THE LAST LAST comment');
+  // console.log('THE LAST LAST comment');
 });
 
 // @SUPER
