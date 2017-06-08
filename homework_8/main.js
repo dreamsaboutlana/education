@@ -87,7 +87,7 @@ function makeCallback(fn) {
 }
 
 makeCallback(function() {
-  console.log('THE LAST LAST c“omment');
+  console.log('THE LAST LAST comment');
 });
 
 // @SUPER
@@ -153,7 +153,7 @@ function sum(num) {
 
 }
 
-sum(5); // 15 Значение кешировано
-sum(5); // 15 Значение взято из кэша
-sum(6); // 21 Кешировано
-sum(6); // 21 Значение взято из кэша
+// sum(5); // 15 Значение кешировано
+// sum(5); // 15 Значение взято из кэша
+// sum(6); // 21 Кешировано
+// sum(6); // 21 Значение взято из кэша
