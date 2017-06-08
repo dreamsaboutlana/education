@@ -73,12 +73,12 @@ function validBraces(str) {
 
 function makeCallback(fn) {
 
-  for (let i = 1; i <= 10; i++) {
+  for (let i = 1, maxNumber = 10; i <= maxNumber; i++) {
     setTimeout(function() {
-      // console.log(i);
+      console.log(i);
 
     }, i * 1000);
-    if (i === 10) {
+    if (i === maxNumber) {
       setTimeout(function() {
         fn();
       }, i * 1000);
@@ -87,7 +87,7 @@ function makeCallback(fn) {
 }
 
 makeCallback(function() {
-  // console.log('THE LAST LAST comment');
+  console.log('THE LAST LAST comment');
 });
 
 // @SUPER
@@ -104,10 +104,19 @@ makeCallback(function() {
  *
  * */
 
-function sum(num) {}
+let cache = {};
 
-sum(5); // 15 Значение кешировано
-sum(5); // 15 Значение взято из кэша
+function sum(num) {
 
-sum(6); // 21 Кешировано
-sum(6); // 21 Значение взято из кэша
+  if (num !== 1) {
+    return num + sum(num - 1);
+  } else {
+    return 1;
+  }
+
+}
+
+console.log(sum(5)); // 15 Значение кешировано
+console.log(sum(5)); // 15 Значение взято из кэша
+console.log(sum(6)); // 21 Кешировано
+console.log(sum(6)); // 21 Значение взято из кэша
