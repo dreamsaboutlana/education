@@ -87,7 +87,7 @@ function makeCallback(fn) {
 }
 
 makeCallback(function() {
-  console.log('THE LAST LAST comment');
+  console.log('THE LAST LAST c“omment');
 });
 
 // @SUPER
@@ -104,19 +104,56 @@ makeCallback(function() {
  *
  * */
 
-let cache = {};
 
-function sum(num) {
+/**
+[
+  {val: 5, res: 15},
+  {...},
+  ....
+  {...}
+]
+**/
 
-  if (num !== 1) {
-    return num + sum(num - 1);
-  } else {
-    return 1;
-  }
+let cacheStorage = [];
+
+function inCache(num) {
+
+  let inCache = false;
+
+  cacheStorage.forEach(function(value, index) {
+    if (value.val == num) {
+      inCache = value.res;
+    }
+  });
+
+  return inCache;
 
 }
 
-console.log(sum(5)); // 15 Значение кешировано
-console.log(sum(5)); // 15 Значение взято из кэша
-console.log(sum(6)); // 21 Кешировано
-console.log(sum(6)); // 21 Значение взято из кэша
+function sum(num) {
+
+  // check is current value in cacheStorage
+  var value = inCache(num);
+  if (value) {
+    console.log(value + ' значение взято из кэша');
+    return value;
+  }
+
+  // if isn't then sum
+  var result = 0;
+  for (var i = 0; i <= num; i++) {
+    result += i;
+  }
+
+  // push it to the cacheStorage
+  cacheStorage.push({ val: num, res: result });
+  console.log(result + ' значение кешировано');
+
+  return result;
+
+}
+
+sum(5); // 15 Значение кешировано
+sum(5); // 15 Значение взято из кэша
+sum(6); // 21 Кешировано
+sum(6); // 21 Значение взято из кэша
