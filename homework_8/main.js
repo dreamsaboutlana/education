@@ -56,10 +56,20 @@ function validBraces(str) {
 
 };
 
-// console.log(validBraces('(){}[]')); //=> returns true
-// console.log(validBraces('(}')); //=> returns false
-// console.log(validBraces('[(])')); // => returns false
-// console.log(validBraces('([{}])')); //=> returns true
+function validBracesTwo(str) {
+
+  while (str.includes('[]') || str.includes('{}') || str.includes('()')) {
+    str = str.replace('{}', '').replace('[]', '').replace('()', '');
+  }
+
+  return str.length ? false : true;
+
+}
+
+console.log(validBraces('(){}[]')); //=> returns true
+console.log(validBraces('(}')); //=> returns false
+console.log(validBracesTwo('[(])')); // => returns false
+console.log(validBracesTwo('([{}])')); //=> returns true
 
 /*
  *
@@ -76,18 +86,16 @@ function makeCallback(fn) {
   for (let i = 1, maxNumber = 10; i <= maxNumber; i++) {
     setTimeout(function() {
       console.log(i);
+      if( i === maxNumber){
+        fn();
+      }
 
     }, i * 1000);
-    if (i === maxNumber) {
-      setTimeout(function() {
-        fn();
-      }, i * 1000);
-    }
   }
 }
 
 makeCallback(function() {
-  console.log('THE LAST LAST c“omment');
+  console.log('THE LAST LAST comment');
 });
 
 // @SUPER
@@ -153,7 +161,45 @@ function sum(num) {
 
 }
 
-sum(5); // 15 Значение кешировано
-sum(5); // 15 Значение взято из кэша
-sum(6); // 21 Кешировано
-sum(6); // 21 Значение взято из кэша
+// sum(5); // 15 Значение кешировано
+// sum(5); // 15 Значение взято из кэша
+// sum(6); // 21 Кешировано
+// sum(6); // 21 Значение взято из кэша
+
+
+
+
+let CacheStorage = (function(num) {
+  let storage = [];
+
+  var result = 0;
+  for (var i = 0; i <= num; i++) {
+    result += i;
+  }
+
+  return {
+    result: result,
+    inStorage: function(value) {
+      let inStorage = false;
+
+      storage.forEach(function(value, index) {
+        if (value.val == num) {
+          inStorage = value.res;
+        }
+      });
+
+      return inStorage;
+
+    }, // check is item in storage
+    add: function(value) {
+      storage.push({ val: num, res: result });
+      return (result + ' значение кешировано');
+    }, // add item to storage
+    get: function(value) {}, // get item from storage
+    remove: function(value) {}, // remove item from storage
+    clean: function() {} // clean the storage
+  };
+})();
+
+// console.log(CacheStorage.add(5));
+// console.log(CacheStorage.inStorage(5));
