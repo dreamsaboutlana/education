@@ -73,11 +73,11 @@ function goodDev(dev) {
   }
 }
 
-// let developers = [developer1, developer2];
-// developers.forEach((dev, index) => {
-//   console.log(`developer ${index + 1}`);
-//   dev.goodDev();
-// });
+let developers = [developer1, developer2];
+developers.forEach((dev, index) => {
+  console.log(`developer ${index + 1}`);
+  dev.goodDev();
+});
 
 // developer 1
 // required: Node.js ... success
@@ -117,33 +117,31 @@ let myObject = {
 
 function mySorter(value) {
 
-  if (value == 'age') {
-    this.database.sort((a, b) => {
+  this.database.sort((a, b) => {
+    if (typeof this.database[0][value] == 'number') {
       return a[value] - b[value];
-    });
-  } else {
-    this.database.sort((a, b) => {
+    } else if (typeof this.database[0][value] == 'string') {
 
-      var nameA = a.name.toUpperCase();
-      var nameB = b.name.toUpperCase();
+      var elemA = a[value].toUpperCase();
+      var elemB = b[value].toUpperCase();
 
-      if (nameA < nameB) {
+      if (elemA < elemB) {
         return -1;
       }
-      if (nameA > nameB) {
+      if (elemA > elemB) {
         return 1;
       }
       return 0;
-    });
-  }
+    }
+  });
 
   return this.database;
 }
 
 // {age:15, name:'c'}, {age:25, name:'a'} {age:100, name:'b'}
 
-// console.log(myObject.mySort('age'));
-// console.log(myObject.mySort('name'));
+console.log(myObject.mySort('age'));
+console.log(myObject.mySort('name'));
 
 // {age:25, name:a}, {age:100, name: b} ...
 
@@ -183,8 +181,8 @@ function moveZeroToEnd(arr) {
   return newArr.concat(zeroArr);
 
 }
-// console.log(moveZeroToEnd(arr1));
-// console.log(moveZeroToEnd(arr2));
+console.log(moveZeroToEnd(arr1));
+console.log(moveZeroToEnd(arr2));
 
 // TASK 3.2  Верните сумму двух найменьших чисел в массиве
 
@@ -208,7 +206,7 @@ function minimalNumber(arr) {
 function summerizer(arr) {
   return minimalNumber(arr) + minimalNumber(arr);
 }
-// console.log(summerizer(arr));
+console.log(summerizer(arr));
 
 // TASK 3.3
 // Напишите функцию которая меняет местами имя и фамилию
@@ -216,7 +214,7 @@ function summerizer(arr) {
 function nameShuffler(string) {
   return string.split(' ').reverse().join(' ');
 }
-// console.log(nameShuffler('john McClane'));
+console.log(nameShuffler('john McClane'));
 
 
 // Task 3.4.
@@ -238,7 +236,7 @@ function nameToUpperCase(arr) {
   })
   return helpArr;
 }
-// console.log(nameToUpperCase(nameArr));
+console.log(nameToUpperCase(nameArr));
 
 // TASK 3.@SUPER.1. Найдите число отсутствующее в заданной последовательности
 
@@ -342,30 +340,30 @@ let junior = {};
 
 // fn.length == arguments.length
 
-function addMethod(object, name, fn) {
+// function addMethod(object, name, fn) {
 
-  object[name] = function(...args) {
-    if (fn.length == arguments.length) {
-      fn(args);
+//   object[name] = function(...args) {
+//     if (fn.length == arguments.length) {
+//       fn(args);
 
-    }
-  };
-}
+//     }
+//   };
+// }
 
-addMethod(junior, 'ok', function() {
-  console.log('zero arguments');
-});
-addMethod(junior, 'ok', function(one) {
-  console.log('one arguments');
-});
-addMethod(junior, 'ok', function(one, two) {
-  console.log('two arguments');
-});
-addMethod(junior, 'ok', function(one, two, three) {
-  console.log('three arguments');
-});
+// addMethod(junior, 'ok', function() {
+//   console.log('zero arguments');
+// });
+// addMethod(junior, 'ok', function(one) {
+//   console.log('one arguments');
+// });
+// addMethod(junior, 'ok', function(one, two) {
+//   console.log('two arguments');
+// });
+// addMethod(junior, 'ok', function(one, two, three) {
+//   console.log('three arguments');
+// });
 
-junior.ok(); //'zero arguments'
-junior.ok(1); //'one arguments'
-junior.ok(1, 2); // 'two arguments'
-junior.ok(1, 2, 3); // 'three arguments'
+// junior.ok(); //'zero arguments'
+// junior.ok(1); //'one arguments'
+// junior.ok(1, 2); // 'two arguments'
+// junior.ok(1, 2, 3); // 'three arguments'
