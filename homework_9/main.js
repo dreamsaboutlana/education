@@ -140,8 +140,8 @@ function mySorter(value) {
 
 // {age:15, name:'c'}, {age:25, name:'a'} {age:100, name:'b'}
 
-console.log(myObject.mySort('age'));
-console.log(myObject.mySort('name'));
+// console.log(myObject.mySort('age'));
+// console.log(myObject.mySort('name'));
 
 // {age:25, name:a}, {age:100, name: b} ...
 
@@ -289,26 +289,13 @@ let arr3 = [
 let arr4 = [25, 10, [10, [15]]];
 
 function openBraces(arr) {
-  let newArr = [];
-  arr.forEach(elem => {
-
-    if (Array.isArray(elem)) {
-      elem.forEach(elem1 => {
-
-        if (Array.isArray(elem1)) {
-          elem1.forEach(elem2 => {
-            newArr.push(elem2);
-          });
-        } else {
-          newArr.push(elem1);
-        }
-      });
-    } else {
-      newArr.push(elem);
-    }
-  });
-
-  return newArr;
+  if (Array.isArray(arr)) {
+    return arr.reduce(function(done, curr) {
+      return done.concat(openBraces(curr));
+    }, []);
+  } else {
+    return arr;
+  }
 }
 
 // console.log(openBraces(arr3));
@@ -338,32 +325,32 @@ function openBraces(arr) {
 
 let junior = {};
 
-// fn.length == arguments.length
+fn.length == arguments.length
 
-// function addMethod(object, name, fn) {
+function addMethod(object, name, fn) {
 
-//   object[name] = function(...args) {
-//     if (fn.length == arguments.length) {
-//       fn(args);
+  object[name] = function(...args) {
+    if (fn.length == arguments.length) {
+      fn(args);
 
-//     }
-//   };
-// }
+    }
+  };
+}
 
-// addMethod(junior, 'ok', function() {
-//   console.log('zero arguments');
-// });
-// addMethod(junior, 'ok', function(one) {
-//   console.log('one arguments');
-// });
-// addMethod(junior, 'ok', function(one, two) {
-//   console.log('two arguments');
-// });
-// addMethod(junior, 'ok', function(one, two, three) {
-//   console.log('three arguments');
-// });
+addMethod(junior, 'ok', function() {
+  console.log('zero arguments');
+});
+addMethod(junior, 'ok', function(one) {
+  console.log('one arguments');
+});
+addMethod(junior, 'ok', function(one, two) {
+  console.log('two arguments');
+});
+addMethod(junior, 'ok', function(one, two, three) {
+  console.log('three arguments');
+});
 
-// junior.ok(); //'zero arguments'
-// junior.ok(1); //'one arguments'
-// junior.ok(1, 2); // 'two arguments'
-// junior.ok(1, 2, 3); // 'three arguments'
+junior.ok(); //'zero arguments'
+junior.ok(1); //'one arguments'
+junior.ok(1, 2); // 'two arguments'
+junior.ok(1, 2, 3); // 'three arguments'
