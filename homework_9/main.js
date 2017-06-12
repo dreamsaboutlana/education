@@ -37,17 +37,8 @@ function goodDev(dev) {
   if (Array.isArray(newSkills)) {
 
     requiresArray.forEach((elem, index) => {
-      let flag = false;
-      for (let i = 0; i < newSkills.length; i++) {
-        if (elem === newSkills[i]) {
-          console.log(elem + ' ... success');
-          flag = true;
-        }
-      }
-      if (!flag) {
-        console.log(elem + ' ... fail');
 
-      }
+      countSkills(newSkills, elem);
 
     });
 
@@ -56,20 +47,24 @@ function goodDev(dev) {
     Object.keys(newExperience).forEach((elem) => {
 
       let tech = newExperience[elem].technology;
-      let flag = false;
-
-      for (let i = 0; i < requiresArray.length; i++) {
-        if (tech === requiresArray[i]) {
-          console.log(requiresArray[i] + '... success');
-          flag = true;
-        }
-      }
-
-      if (!flag) {
-        console.log(tech + ' ... fail');
-      }
+      
+      countSkills(requiresArray, tech)
 
     });
+  }
+}
+
+function countSkills(arr, elem) {
+  let flag = false;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (elem === arr[i]) {
+      console.log(arr[i] + '... success');
+      flag = true;
+    }
+  }
+  if (!flag) {
+    console.log(elem + ' ... fail');
   }
 }
 
@@ -290,7 +285,7 @@ let arr4 = [25, 10, [10, [15]]];
 
 function openBraces(arr) {
   if (Array.isArray(arr)) {
-    return arr.reduce(function(done, curr) {
+    return arr.reduce((done, curr) => {
       return done.concat(openBraces(curr));
     }, []);
   } else {
@@ -323,34 +318,34 @@ function openBraces(arr) {
  *
  * */
 
-let junior = {};
+// let junior = {};
 
-fn.length == arguments.length
+// fn.length == arguments.length
 
-function addMethod(object, name, fn) {
+// function addMethod(object, name, fn) {
 
-  object[name] = function(...args) {
-    if (fn.length == arguments.length) {
-      fn(args);
+//   object[name] = function(...args) {
+//     if (fn.length == arguments.length) {
+//       fn(args);
 
-    }
-  };
-}
+//     }
+//   };
+// }
 
-addMethod(junior, 'ok', function() {
-  console.log('zero arguments');
-});
-addMethod(junior, 'ok', function(one) {
-  console.log('one arguments');
-});
-addMethod(junior, 'ok', function(one, two) {
-  console.log('two arguments');
-});
-addMethod(junior, 'ok', function(one, two, three) {
-  console.log('three arguments');
-});
+// addMethod(junior, 'ok', function() {
+//   console.log('zero arguments');
+// });
+// addMethod(junior, 'ok', function(one) {
+//   console.log('one arguments');
+// });
+// addMethod(junior, 'ok', function(one, two) {
+//   console.log('two arguments');
+// });
+// addMethod(junior, 'ok', function(one, two, three) {
+//   console.log('three arguments');
+// });
 
-junior.ok(); //'zero arguments'
-junior.ok(1); //'one arguments'
-junior.ok(1, 2); // 'two arguments'
-junior.ok(1, 2, 3); // 'three arguments'
+// junior.ok(); //'zero arguments'
+// junior.ok(1); //'one arguments'
+// junior.ok(1, 2); // 'two arguments'
+// junior.ok(1, 2, 3); // 'three arguments'
