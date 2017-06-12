@@ -240,10 +240,81 @@ function nameToUpperCase(arr) {
 }
 // console.log(nameToUpperCase(nameArr));
 
-// TASK 3. super1
-// TASK 3. super2
+// TASK 3.@SUPER.1. Найдите число отсутствующее в заданной последовательности
 
+/* example:
+[1,3,5,9] => 7
+[0,8,16,32] => 24
+[4, 6, 8, 10] => 2 // число сначала
+[0,16,24,32] => 8
+*/
 
+function random(arr) {
+
+  let step = (arr[arr.length - 1] - arr[0]) / arr.length;
+
+  arr.forEach((elem, index, arr) => {
+
+    if ((step ^ 0) === step && (arr[index + 1] - arr[index]) !== step) {
+
+      let mistNum = arr[index] + step;
+
+      arr.splice(index + 1, 0, mistNum);
+    } else if (arr[0] !== arr[1] - step && arr.length < 5) {
+
+      let newStep = arr[index + 1] - arr[index];
+      let lostNum = arr[0] - newStep;
+      arr.splice(0, 0, lostNum);
+    }
+  });
+  return arr;
+}
+
+// console.log(random([1, 3, 5, 9]));
+// console.log(random([0, 8, 16, 32]));
+// console.log(random([0, 16, 24, 32]));
+// console.log(random([4, 6, 8, 10]));
+
+// TASK 3.@SUPER2. Напишите функция которая преобразовывает/открывает скобки всех 
+// вложенных внутри массивов
+// Необходимо реализовать рекурсивный фызов функции.
+// Функция должна открывать любое количество внутренних массивов
+
+// example:
+// [[1,2],[3,[4]],5, 10] => [1,2,3,4,5,10]
+// [25,10,[10,[15]]] => [25,10,10,15]
+//  */
+let arr3 = [
+  [1, 2],
+  [3, [4]], 5, 10
+];
+let arr4 = [25, 10, [10, [15]]];
+
+function openBraces(arr) {
+  let newArr = [];
+  arr.forEach(elem => {
+
+    if (Array.isArray(elem)) {
+      elem.forEach(elem1 => {
+
+        if (Array.isArray(elem1)) {
+          elem1.forEach(elem2 => {
+            newArr.push(elem2);
+          });
+        } else {
+          newArr.push(elem1);
+        }
+      });
+    } else {
+      newArr.push(elem);
+    }
+  });
+
+  return newArr;
+}
+
+// console.log(openBraces(arr3));
+// console.log(openBraces(arr4));
 //___
 
 
@@ -271,7 +342,15 @@ let junior = {};
 
 // fn.length == arguments.length
 
-function addMethod(object, name, fn) {}
+function addMethod(object, name, fn) {
+
+  object[name] = function(...args) {
+    if (fn.length == arguments.length) {
+      fn(args);
+
+    }
+  };
+}
 
 addMethod(junior, 'ok', function() {
   console.log('zero arguments');
@@ -286,7 +365,7 @@ addMethod(junior, 'ok', function(one, two, three) {
   console.log('three arguments');
 });
 
-// junior.ok(); //'zero arguments'
-// junior.ok(1); //'one arguments'
-// junior.ok(1, 2); // 'two arguments'
-// junior.ok(1, 2, 3); // 'three arguments'
+junior.ok(); //'zero arguments'
+junior.ok(1); //'one arguments'
+junior.ok(1, 2); // 'two arguments'
+junior.ok(1, 2, 3); // 'three arguments'
