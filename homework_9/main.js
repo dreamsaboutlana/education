@@ -47,7 +47,7 @@ function goodDev(dev) {
     Object.keys(newExperience).forEach((elem) => {
 
       let tech = newExperience[elem].technology;
-      
+
       countSkills(requiresArray, tech)
 
     });
@@ -166,11 +166,8 @@ function moveZeroToEnd(arr) {
 
   arr.forEach((elem, index) => {
 
-    if (elem !== 0) {
-      newArr.push(elem);
-    } else {
-      zeroArr.push(elem);
-    }
+    (elem !== 0) ? newArr.push(elem): zeroArr.push(elem);
+ 
   });
 
   return newArr.concat(zeroArr);
@@ -318,7 +315,7 @@ function openBraces(arr) {
  *
  * */
 
-// let junior = {};
+let junior = {};
 
 // fn.length == arguments.length
 
