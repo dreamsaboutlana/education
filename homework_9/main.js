@@ -29,6 +29,7 @@ let developer2 = {
 };
 
 function goodDev(dev) {
+
   let requiresArray = this.requires;
   let newSkills = this.skills;
   let newExperience = this.experience;
@@ -49,7 +50,9 @@ function goodDev(dev) {
       }
 
     });
+
   } else if (newExperience) {
+
     Object.keys(newExperience).forEach((elem) => {
 
       let tech = newExperience[elem].technology;
@@ -70,11 +73,11 @@ function goodDev(dev) {
   }
 }
 
-let developers = [developer1, developer2];
-developers.forEach((dev, index) => {
-  console.log(`developer ${index + 1}`);
-  dev.goodDev();
-});
+// let developers = [developer1, developer2];
+// developers.forEach((dev, index) => {
+//   console.log(`developer ${index + 1}`);
+//   dev.goodDev();
+// });
 
 // developer 1
 // required: Node.js ... success
@@ -94,6 +97,7 @@ developers.forEach((dev, index) => {
  *
  * Создайте объект содержащий коллекцию элементов с одинаковыми
  * свойстами и разными значениями!
+ *
  * Напишите функцию принимает 1 аргумент сортирует объект по 
  * переданному значению
  * 
@@ -106,13 +110,40 @@ let myObject = {
     { age: 100, name: 'b' },
     { age: 15, name: 'c' },
     { age: 25, name: 'a' }
-  ]
+  ],
+  mySort: mySorter
+
 };
+
+function mySorter(value) {
+
+  if (value == 'age') {
+    this.database.sort((a, b) => {
+      return a[value] - b[value];
+    });
+  } else {
+    this.database.sort((a, b) => {
+
+      var nameA = a.name.toUpperCase();
+      var nameB = b.name.toUpperCase();
+
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+
+  return this.database;
+}
 
 // {age:15, name:'c'}, {age:25, name:'a'} {age:100, name:'b'}
 
-// console.log(myObject.myFilter('age'));
-// console.log(myObject.myFilter('name'));
+// console.log(myObject.mySort('age'));
+// console.log(myObject.mySort('name'));
 
 // {age:25, name:a}, {age:100, name: b} ...
 
@@ -121,9 +152,100 @@ let myObject = {
  *
  * Перепишите homework 5 с использованием методов массивов и
  * => arrow functions
- *
- * 
+ //___
+/*
+ task 3.1. 
+ Переместите 0 в конец массива, остальные числа должны остаться
+ неизменными
+ .сoncat();
+ example:
+ [1,false,2,0,3,null,0,4,0,25] => [1, false, 2, 3, null, 4, 25, 0, 0, 0]
+ [ 'a', 0, 0, 'b', null, 'c', 'd', 0, 1, false, 0, 1, 0, 3, [], 0, 1, 9, 0, 0, {}, 0, 0, 9 ] => ["a","b",null,"c","d",1,false,1,3,[],1,9,{},9,0,0,0,0,0,0,0,0,0,0]
+ [ 0, 1, null, 2, false, 1, 0 ] => [1,null,2,false,1,0,0]
  */
+let arr1 = [1, false, 2, 0, 0, 0, 3, null, 0, 4, 0, 25];
+let arr2 = ['a', 0, 0, 0, 0, 'b', null, 'c', 'd', 0, 1, false, 0, 1, 0, 3, [], 0, 1, 9, 0, 0, {}, 0, 0, 9];
+
+function moveZeroToEnd(arr) {
+
+  let newArr = [];
+  let zeroArr = [];
+
+  arr.forEach((elem, index) => {
+
+    if (elem !== 0) {
+      newArr.push(elem);
+    } else {
+      zeroArr.push(elem);
+    }
+  });
+
+  return newArr.concat(zeroArr);
+
+}
+// console.log(moveZeroToEnd(arr1));
+// console.log(moveZeroToEnd(arr2));
+
+// TASK 3.2  Верните сумму двух найменьших чисел в массиве
+
+let arr = [10, 20, 1, 31, 11, 10];
+
+function minimalNumber(arr) {
+  let min = arr[0];
+  let minIndex = 0;
+
+  arr.forEach((elem, index) => {
+    if (elem < min) {
+      min = elem;
+      minIndex = index;
+    }
+  })
+
+  arr.splice(minIndex, 1);
+  return min;
+}
+
+function summerizer(arr) {
+  return minimalNumber(arr) + minimalNumber(arr);
+}
+// console.log(summerizer(arr));
+
+// TASK 3.3
+// Напишите функцию которая меняет местами имя и фамилию
+
+function nameShuffler(string) {
+  return string.split(' ').reverse().join(' ');
+}
+// console.log(nameShuffler('john McClane'));
+
+
+// Task 3.4.
+// Напишите функцию которая принимает массив с именами и возвращает массив
+//в котором каждая буква становится заглавной
+
+//capMe(['jo', 'nelson', 'jurie']) // returns ['Jo', 'Nelson', 'Jurie']
+//capMe(['KARLY', 'DANIEL', 'KELSEY']) // returns ['Karly', 'Daniel', 'Kelsey']
+
+let nameArr = ['jo', 'nelson', 'jurie'];
+
+function nameToUpperCase(arr) {
+
+  let helpArr = [];
+
+  arr.forEach(elem => {
+    let value = elem.slice(0, 1).toUpperCase() + elem.slice(1).toLowerCase();
+    helpArr.push(value);
+  })
+  return helpArr;
+}
+// console.log(nameToUpperCase(nameArr));
+
+// TASK 3. super1
+// TASK 3. super2
+
+
+//___
+
 
 ////////@ TODO -- LVL Strong Junior
 /*
