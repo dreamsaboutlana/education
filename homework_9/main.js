@@ -329,20 +329,20 @@ let junior = {};
 //   };
 // }
 
-// addMethod(junior, 'ok', function() {
-//   console.log('zero arguments');
-// });
-// addMethod(junior, 'ok', function(one) {
-//   console.log('one arguments');
-// });
-// addMethod(junior, 'ok', function(one, two) {
-//   console.log('two arguments');
-// });
-// addMethod(junior, 'ok', function(one, two, three) {
-//   console.log('three arguments');
-// });
+addMethod(junior, 'ok', function() {
+  console.log('zero arguments');
+});
+addMethod(junior, 'ok', function(one) {
+  console.log('one arguments');
+});
+addMethod(junior, 'ok', function(one, two) {
+  console.log('two arguments');
+});
+addMethod(junior, 'ok', function(one, two, three) {
+  console.log('three arguments');
+});
 
-// junior.ok(); //'zero arguments'
-// junior.ok(1); //'one arguments'
-// junior.ok(1, 2); // 'two arguments'
-// junior.ok(1, 2, 3); // 'three arguments'
+junior.ok(); //'zero arguments'
+junior.ok(1); //'one arguments'
+junior.ok(1, 2); // 'two arguments'
+junior.ok(1, 2, 3); // 'three arguments'
