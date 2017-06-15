@@ -15,7 +15,8 @@
 let developer1 = {
   skills: ['JavaScript', 'linux', 'html', 'OOP', 'Node.js'],
   requires: ['Node.js', 'JavaScript', 'OOP', 'css'],
-  goodDev: goodDev
+  goodDev: goodDev,
+  arraySkills: arraySkills
 };
 let developer2 = {
   experience: [
@@ -25,33 +26,36 @@ let developer2 = {
     { technology: 'docker' }
   ],
   requires: ['java', 'json', 'c++', 'JavaScript'],
-  goodDev: goodDev
+  goodDev: goodDev,
+  arraySkills: arraySkills
 };
+
+function arraySkills() {
+
+  return this.skills ? this.skills : this.experience.map(elem => elem.technology);
+}
 
 function goodDev(dev) {
 
   let requiresArray = this.requires;
-  let newSkills = this.skills;
-  let newExperience = this.experience;
+  let arraySkills = this.arraySkills();
 
-  if (Array.isArray(newSkills)) {
-
-    requiresArray.forEach((elem, index) => {
-
-      countSkills(newSkills, elem);
-
-    });
-
-  } else if (newExperience) {
-
-    Object.keys(newExperience).forEach((elem) => {
-
-      let tech = newExperience[elem].technology;
-
-      countSkills(requiresArray, tech)
-
-    });
-  }
+  requiresArray.forEach((elem, index) => {
+    countSkills(arraySkills, elem);
+  });
+  // let requiresArray = this.requires;
+  // let newSkills = this.skills;
+  // let newExperience = this.experience; 
+  // if (Array.isArray(newSkills)) {
+  //   requiresArray.forEach((elem, index) => {
+  //     countSkills(newSkills, elem);
+  //   });
+  // } else if (newExperience) {
+  //   Object.keys(newExperience).forEach((elem) => {
+  //     let tech = newExperience[elem].technology;
+  //     countSkills(requiresArray, tech)
+  //   });
+  // }
 }
 
 function countSkills(arr, elem) {
@@ -59,20 +63,20 @@ function countSkills(arr, elem) {
 
   for (let i = 0; i < arr.length; i++) {
     if (elem === arr[i]) {
-      console.log(arr[i] + '... success');
+      console.log(`${arr[i]} ... success`);
       flag = true;
     }
   }
   if (!flag) {
-    console.log(elem + ' ... fail');
+    console.log(`${elem} ... fail`);
   }
 }
 
-let developers = [developer1, developer2];
-developers.forEach((dev, index) => {
-  console.log(`developer ${index + 1}`);
-  dev.goodDev();
-});
+// let developers = [developer1, developer2];
+// developers.forEach((dev, index) => {
+//   console.log(`developer ${index + 1}`);
+//   dev.goodDev();
+// });
 
 // developer 1
 // required: Node.js ... success
@@ -109,6 +113,14 @@ let myObject = {
   mySort: mySorter
 
 };
+myObject.myFillter = function(param) {
+  return this.database.sort((a, b) => {
+    return a[param] > b[param];
+  })
+}
+
+// console.log(myObject.myFillter('age'));
+// console.log(myObject.myFillter('name'));
 
 function mySorter(value) {
 
@@ -167,14 +179,14 @@ function moveZeroToEnd(arr) {
   arr.forEach((elem, index) => {
 
     (elem !== 0) ? newArr.push(elem): zeroArr.push(elem);
- 
+
   });
 
   return newArr.concat(zeroArr);
 
 }
-console.log(moveZeroToEnd(arr1));
-console.log(moveZeroToEnd(arr2));
+// console.log(moveZeroToEnd(arr1));
+// console.log(moveZeroToEnd(arr2));
 
 // TASK 3.2  Верните сумму двух найменьших чисел в массиве
 
@@ -198,7 +210,7 @@ function minimalNumber(arr) {
 function summerizer(arr) {
   return minimalNumber(arr) + minimalNumber(arr);
 }
-console.log(summerizer(arr));
+// console.log(summerizer(arr));
 
 // TASK 3.3
 // Напишите функцию которая меняет местами имя и фамилию
@@ -206,7 +218,7 @@ console.log(summerizer(arr));
 function nameShuffler(string) {
   return string.split(' ').reverse().join(' ');
 }
-console.log(nameShuffler('john McClane'));
+// console.log(nameShuffler('john McClane'));
 
 
 // Task 3.4.
@@ -228,7 +240,7 @@ function nameToUpperCase(arr) {
   })
   return helpArr;
 }
-console.log(nameToUpperCase(nameArr));
+// console.log(nameToUpperCase(nameArr));
 
 // TASK 3.@SUPER.1. Найдите число отсутствующее в заданной последовательности
 
@@ -319,15 +331,18 @@ let junior = {};
 
 // fn.length == arguments.length
 
-// function addMethod(object, name, fn) {
+function addMethod(object, name, fn) {
+  let method = object[name];
 
-//   object[name] = function(...args) {
-//     if (fn.length == arguments.length) {
-//       fn(args);
+  object[name] = function() {
+    if (fn.length == arguments.length) {
+      fn.apply(this, arguments);
+    } else if (typeof method === 'function') {
+      method.apply(this, arguments);
+    }
 
-//     }
-//   };
-// }
+  }
+}
 
 addMethod(junior, 'ok', function() {
   console.log('zero arguments');
@@ -343,6 +358,6 @@ addMethod(junior, 'ok', function(one, two, three) {
 });
 
 junior.ok(); //'zero arguments'
-junior.ok(1); //'one arguments'
 junior.ok(1, 2); // 'two arguments'
+junior.ok(1); //'one arguments'
 junior.ok(1, 2, 3); // 'three arguments'
