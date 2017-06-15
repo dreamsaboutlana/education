@@ -17,6 +17,7 @@
  * Когда мы вызовим функцию z(x) вернется undefined, 
  * потому что функция 'z' ничего не возвращает,
  * если добавить return то вернет "5".
+ * стрелочная функция с блочным телом не возвращает ничего для этого нужен return
  *
  * */
 
@@ -134,14 +135,14 @@ let ezjQuery = {
  */
 
 // example
-var helloList = ezjQuery
-  .newAdd('body') // <body></body>
-  .newAdd('div') // <body><div></div></body>
-  .newAdd('ul') // <body><div><ul></ul></div></body>
-  .newAdd('li', 'Hello') //<body><div><ul><li>Hello</li></ul></div></body>
-  .newAdd('a', 'World').newAdd('span', '!!!')
-  .render();
-console.log(helloList); // <body><div><ul><li>Hello</li></ul></div></body>
+// var helloList = ezjQuery
+//   .newAdd('body') // <body></body>
+//   .newAdd('div') // <body><div></div></body>
+//   .newAdd('ul') // <body><div><ul></ul></div></body>
+//   .newAdd('li', 'Hello') //<body><div><ul><li>Hello</li></ul></div></body>
+//   .newAdd('a', 'World').newAdd('span', '!!!')
+//   .render();
+// console.log(helloList); // <body><div><ul><li>Hello</li></ul></div></body>
 // //  Обратите внимание, что после вызова render создание строки началось сначала
 
 // var bodyDiv = ezjQuery
@@ -162,26 +163,33 @@ console.log(helloList); // <body><div><ul><li>Hello</li></ul></div></body>
  *
  * */
 
-let $$ = {
-    sum: '',
-    startArr: [],
-    lastArr: [],
+// let $$ =  {
+//     sum: '',
+//     startArr: [],
+//     lastArr: [],
 
-    add: (str, info) => {
+//     add(str, info) {
 
-      if (info === undefined) {
-        this.startArr.push(`<${str}>`);
-      } else {
-        this.startArr.push(`<${str}> ${info} `);
-      }
+//       if (info === undefined) {
+//         this.startArr.push(`<${str}>`);
+//       } else {
+//         this.startArr.push(`<${str}> ${info} `);
+//       }
 
-      this.lastArr.unshift(`</${str}> `);
-      this.returnStr = this.startArr.concat(this.lastArr).join('');
-      return this;
-    },
-    render: () => {
-      return this.returnStr;
-    }
-  }
-  // let $str = $$.add('body').add('li', 'hi').render(); // <body><li>hi</li></body>
-  // console.log($str);
+//       this.lastArr.unshift(`</${str}> `);
+//       this.returnStr = this.startArr.concat(this.lastArr).join('');
+//       return this;
+//     },
+//     render() {
+//       return this.returnStr;
+//     }
+//   }
+
+function $$(str) {
+
+  return ezjQuery.newAdd(str);
+}
+
+let $str = $$('body').newAdd('li', 'hi').newAdd('p').render(); //<body><li>hi</li></body>
+
+console.log($str);
