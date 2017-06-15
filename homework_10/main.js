@@ -65,32 +65,53 @@ let ezjQuery = {
   startArr: [],
   lastArr: [],
 
-  add: (str) => {
-
+  add(str) {
     let newStr = (`<${str}> </${str}> `);
 
     this.sum += newStr;
     console.log(this.sum);
     return this;
   },
+  // add: function(str) {
+  //   let newStr = (`<${str}> </${str}> `);
+  //   this.sum += newStr;
+  //   console.log(this.sum);
+  //   return this;
+  // },
 
-  newAdd: (str, info) => {
+  newAdd(str, info) {
 
     if (info === undefined) {
       this.startArr.push(`<${str}>`);
     } else {
       this.startArr.push(`<${str}> ${info} `);
     }
-
     this.lastArr.unshift(`</${str}> `);
     this.returnStr = this.startArr.concat(this.lastArr).join('');
 
     return this;
-
   },
-  render: () => {
+  //   newAdd: function(str, info) {
+  //   if (info === undefined) {
+  //     this.startArr.push(`<${str}>`);
+  //     // console.log(this.startArr);
+  //   } else {
+  //     this.startArr.push(`<${str}> ${info} `);
+  //   }
+  //   this.lastArr.unshift(`</${str}> `);
+  //   this.returnStr = this.startArr.concat(this.lastArr).join('');
+  //   return this;
+  // },
+
+  render() {
     return this.returnStr;
   }
+  // render: function() {
+  //   return this.returnStr;
+  // }
+
+
+
 };
 
 // ezjQuery
@@ -120,7 +141,7 @@ var helloList = ezjQuery
   .newAdd('li', 'Hello') //<body><div><ul><li>Hello</li></ul></div></body>
   .newAdd('a', 'World').newAdd('span', '!!!')
   .render();
-// console.log(helloList); // <body><div><ul><li>Hello</li></ul></div></body>
+console.log(helloList); // <body><div><ul><li>Hello</li></ul></div></body>
 // //  Обратите внимание, что после вызова render создание строки началось сначала
 
 // var bodyDiv = ezjQuery
@@ -142,25 +163,25 @@ var helloList = ezjQuery
  * */
 
 let $$ = {
-  sum: '',
-  startArr: [],
-  lastArr: [],
+    sum: '',
+    startArr: [],
+    lastArr: [],
 
-  add: (str, info) => {
+    add: (str, info) => {
 
-    if (info === undefined) {
-      this.startArr.push(`<${str}>`);
-    } else {
-      this.startArr.push(`<${str}> ${info} `);
+      if (info === undefined) {
+        this.startArr.push(`<${str}>`);
+      } else {
+        this.startArr.push(`<${str}> ${info} `);
+      }
+
+      this.lastArr.unshift(`</${str}> `);
+      this.returnStr = this.startArr.concat(this.lastArr).join('');
+      return this;
+    },
+    render: () => {
+      return this.returnStr;
     }
-
-    this.lastArr.unshift(`</${str}> `);
-    this.returnStr = this.startArr.concat(this.lastArr).join('');
-    return this;
-  },
-  render: () => {
-    return this.returnStr;
   }
-}
-let $str = $$('body').add('li', 'hi').render(); // <body><li>hi</li></body>
-console.log($str);
+  // let $str = $$.add('body').add('li', 'hi').render(); // <body><li>hi</li></body>
+  // console.log($str);
