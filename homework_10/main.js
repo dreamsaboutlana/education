@@ -185,11 +185,27 @@ let ezjQuery = {
 //     }
 //   }
 
-function $$(str) {
+function $$(mainTag, mainContent = '') {
 
-  return ezjQuery.newAdd(str);
+  return {
+    tags: [{ tagName: mainTag, content: mainContent }],
+    add(tagName, content = '') {
+      this.tags.push({ tagName, content });
+      return this;
+    },
+    render() {
+      const beginArr = [];
+      const endArr = [];
+      this.tags.forEach(tag => {
+        beginArr.push(`<${tag.tagName}>${tag.content}`);
+        endArr.unshift(`</${tag.tagName}>`);
+      })
+        this.tags = [];
+        return beginArr.concat(endArr).join('');
+
+  }
+    };
 }
 
-let $str = $$('body').newAdd('li', 'hi').newAdd('p').render(); //<body><li>hi</li></body>
-
+let $str = $$('body').add('li', 'hi').add('p').render(); //<body><li>hi</li></body>
 console.log($str);
