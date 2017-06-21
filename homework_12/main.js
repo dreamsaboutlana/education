@@ -1,0 +1,91 @@
+'use strict';
+
+/*
+ *
+ * 
+ * TASK ! ! ! 
+ * Сделайте пожалуйста с теми навыками которые у вас есть ТЕЛЕФОННЫЙ СПРАВОЧНИК
+ *
+ * Task 0
+ *
+ * Создайте функцию конструктор Http, которая будет иметь 2 метода
+ *
+ * createServer() - принимает один аргумент функцию с двумя параметрами ctx и next
+ * ctx: Object {
+ *   req: Object
+ *     PORT: number
+ *     url: string
+ *   res: Object
+ *     status: number,
+ *     message: string,
+ *     header: Object {
+ *       content-type:application/json
+ *       }
+ *   }
+ * next: Function
+
+ * listen(PORT, host) - в консоле должна отобразится надпись
+ * "Server running on https://host:port"
+ * и вызваться переданная в createServer функция
+ *
+ *
+ * методы нужно вызывать через chain
+ * после вызова метода listen() - должна вызываться переданная в createServer
+ * первая функция и возвращать объект и функцию
+ *
+ * */
+var ctx = {
+  req: {
+    PORT: 8080,
+    url: 'sveta / confeta'
+  },
+  res: {
+    status: 200,
+    message: `You're in`,
+    header: {
+      'content-type': 'application/json'
+    }
+  }
+};
+
+function next() {
+  console.log('hohoho');
+}
+
+function Http() {
+  this.createServer = function(fn) {
+    this.fn = fn;
+    this.fn.apply(fn, [ctx,next]);
+    return this;
+
+  };
+  this.listen = function(PORT, host) {
+    console.log(`Server running on https://${host}:${PORT}`);
+    this.createServer(this.fn);
+    return Http;
+  };
+}
+const server = new Http().createServer(function(ctx, next) {
+  console.log(ctx);
+  console.log(next);
+}).listen(3000, 'localhost');
+
+
+// TASK 1
+// Создать класс Human, у которого будут свойства обычного человека:
+// имя, возраст, пол, рост, вес.
+// Используя прототипное наследование создать дочерние классы Worker
+// (дописать в них поля места работы, зарплатой, метод "работать")
+// и Student (дописать поля места учебы, стипендией, метод "смотреть сериалы")
+//
+// Создать несколько экземпляров классов Worker и Student, вывести их в консоль.
+// Убедиться что они имеют поля родительского класса Human
+
+
+// @SUPER
+
+//
+// TASK 0
+// Создайте функцию обертку над другой функцией
+//Каждый раз при вызове внутренней функции в консоле будут отображаться аргументы функции
+//которую мы обернули
