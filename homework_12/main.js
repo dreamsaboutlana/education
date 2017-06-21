@@ -34,7 +34,41 @@
  * первая функция и возвращать объект и функцию
  *
  * */
-var ctx = {
+
+
+function next() {
+  console.log('hohoho');
+}
+
+function Http() {
+  this.ctx = {
+    req: {
+      PORT: 8080,
+      url: 'sveta / confeta'
+    },
+    res: {
+      status: 200,
+      message: `You're in`,
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+  }
+}
+
+Http.prototype.createServer = function(fn) {
+  this.fn = fn;
+  return this;
+
+};
+Http.prototype.listen = function(PORT, host) {
+  console.log(`Server running on https://${host}:${PORT}`);
+  this.createServer(this.fn);
+  this.fn.apply(this.fn, [this.ctx, next]);
+
+  return Http;
+};
+var Nctx = {
   req: {
     PORT: 8080,
     url: 'sveta / confeta'
@@ -48,42 +82,28 @@ var ctx = {
   }
 };
 
-function next() {
-  console.log('hohoho');
-}
-
-function Http() {
-  this.createServer = function(fn) {
-    this.fn = fn;
-    this.fn.apply(fn, [ctx, next]);
-    return this;
-
-  };
-  this.listen = function(PORT, host) {
-    console.log(`Server running on https://${host}:${PORT}`);
-    this.createServer(this.fn);
-    return Http;
-  };
-}
 class OtherHttp {
-
   createServer(fn) {
     this.fn = fn;
-    this.fn.apply(fn, [ctx, next]);
     return this;
   }
   listen(PORT, host) {
     console.log(`Server running on https://${host}:${PORT}`);
     this.createServer(this.fn);
+    this.fn.apply(this.fn, [Nctx, next]);
+
     return Http;
   }
-
 }
-// const server = new Http().createServer(function(ctx, next) {
-//   console.log(ctx);
-//   console.log(next);
-// }).listen(3000, 'localhost');
 
+const server = new Http().createServer(function(ctx, next) {
+  console.log(ctx);
+  console.log(next);
+}).listen(3000, 'localhost');
+const Nserver = new OtherHttp().createServer(function(Nctx, next) {
+  console.log(Nctx);
+  console.log(next);
+}).listen(3000, 'localhost');
 
 // TASK 1
 // Создать класс Human, у которого будут свойства обычного человека:
