@@ -169,6 +169,7 @@ Worker.prototype.working = function() {
 };
 
 Student.prototype = Object.create(Human.prototype);
+// Student.prototype = new Human();
 
 function Student(name, age, gender, height, weight, studyPlace, scholarship) {
   Human.call(this, name, age, gender, height, weight);
