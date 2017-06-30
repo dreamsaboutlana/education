@@ -157,15 +157,26 @@ let startTimer = () => {
  * */
 
 class DataBase {
-  constructor() {}
+  constructor() {
+    this.timeInterval = 5000;
+    this.counter = 5;
+  }
   query() {
 
-    setTimeout(() => {
-      for (let i = 5; i >= 1; i --) {
-        console.log(i);
-      }
+    //   setTimeout(() => {
+    //     for (let i = 5; i >= 1; i--) {
+    //       console.log(i);
+    //     }
+    //     console.log('The web server is down')
+    //   }, 1000);
+    // }
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
+    this.timer = setTimeout(() => {
+      this.counter = 5;
       console.log('The web server is down')
-    }, 1000);
+    }, this.timeInterval);
   }
 }
 

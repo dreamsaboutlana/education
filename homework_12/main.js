@@ -59,8 +59,8 @@ function Http() {
 Http.prototype.createServer = function(fn) {
   this.fn = fn;
   return this;
-
 };
+
 Http.prototype.listen = function(PORT, host) {
   console.log(`Server running on https://${host}:${PORT}`);
   this.createServer(this.fn);

@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 28px;
+  color: #4c4ca5;
+  text-align: center;
+}
+
+form {
+  width: 70%;
+  margin: 0 auto 30px;
+  padding-top: 20px;
+}
+
+form label {
+  display: block;
+  margin-left: 20px;
+}
+
+.form_block {
+  margin-bottom: 20px;
+}
+
+legend {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+input[type='submit'] {
+  color: #517bae;
+  background: transparent;
+  border-radius: 4px;
+  border: 2px solid #517bae;
+  width: 200px;
+  height: 40px;
+  font-size: 22px;
+  line-height: 28px;
+  display: block;
+  margin: 20px auto 0;
+  transition: 2s;
+}
+
+input[type='submit']:hover {
+  color: #ffffff;
+  background: #517bae;
+}
