@@ -51,3 +51,6 @@ input[type='submit']:hover {
   color: #ffffff;
   background: #517bae;
 }
+ul{
+  list-style-type: none;
+}
