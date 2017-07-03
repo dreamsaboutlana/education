@@ -20,36 +20,32 @@ let phoneApp = {
     return document.createElement(tag);
   },
 
-  createThead() {
-    const thead = this.createTag('thead');
+  createTh(arr) {
     const tr = this.createTag('tr');
 
-    this.tableHead.forEach(elem => {
-
+    arr.forEach(elem => {
       const th = this.createTag('th');
+
       th.textContent = elem;
       tr.appendChild(th);
-
     });
+
+    return tr;
+  },
+
+  createThead() {
+
+    const thead = this.createTag('thead');
+    const tr = this.createTh(this.tableHead);
     thead.appendChild(tr);
 
     return thead;
   },
 
   createTbody() {
-
     const tbody = this.createTag('tbody');
     this.objUser.forEach(elem => {
-      const tr = this.createTag('tr');
-
-      Object.values(elem).forEach(el => {
-
-        const th = this.createTag('th');
-        th.textContent = el;
-
-        tr.appendChild(th);
-      });
-
+      const tr = this.createTh(Object.values(elem));
       tbody.appendChild(tr);
     });
 
