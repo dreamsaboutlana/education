@@ -1,3 +1,4 @@
+'use strict';
 /*
 TASK 0
 Проверьте что строка содержит все символы от "a" до "z"
@@ -17,7 +18,20 @@ TASK 0
 
 const solution = (str) => {
 
+  if (str.length >= 26 && /^[0-9]/.test(str) != true && /^[a-z]+/.test(str) == true && /\W/.test(str) != true) {
+    return true;
+  }
+
+  return false;
+
 };
+
+// console.log(solution("wyyga")); // false;
+// console.log(solution("qwertyuioplkjhgfdsazxcvbnm")); // true
+// console.log(solution("qqqqqqqqpwoeirutyalskdjfhgmznxbcv")); // true
+// console.log(solution("ejuxggfsts")); // false
+// console.log(solution("qpwoeirutyalskdjfhgmznxbcv")); // true
+// console.log(solution("0123456789abcdefghijklmnop")); // false
 
 /*
  2. Напишите функция которая преобразовывает открывает скобки всех 
@@ -33,6 +47,7 @@ const solution = (str) => {
  */
 
 function openBraces(arr) {
+
   if (Array.isArray(arr)) {
     return arr.reduce((done, curr) => {
       return done.concat(openBraces(curr));
@@ -40,10 +55,12 @@ function openBraces(arr) {
   } else {
     return arr;
   }
-}
+};
+
 // console.log(openBraces([ [1, 2],[3, [4]], 5, 10]));
 // console.log(openBraces([25, 10, [10, [15]]]));
 // console.log(openBraces([1, [2, [{ a: "b" }]]]));
+
 /*
 Виртуализировать таблицу, сделать рендер всей таблицы через JavaScript.
 
