@@ -16,14 +16,23 @@ TASK 0
 
 // 2) Вы должны учесть все возможные варианты
 
-const solution = (str) => {
+const solution = str => {
 
-  if (str.length >= 26 && /^[0-9]/.test(str) != true && /^[a-z]+/.test(str) == true && /\W/.test(str) != true) {
-    return true;
-  }
+  const abc = 'qazxswedcvfrtgbnhyujmkiolp';
+  const abcSorted = sortString(abc);
+  const newStrSorted = sortString(str);
 
-  return false;
+  return abcSorted === newStrSorted;
 
+};
+const sortString = str => {
+  return str
+    .split('')
+    .sort()
+    .filter((elem, index, arr) => {
+      return arr.indexOf(elem) === index;
+    })
+    .join('');
 };
 
 // console.log(solution("wyyga")); // false;
@@ -60,6 +69,15 @@ function openBraces(arr) {
 // console.log(openBraces([ [1, 2],[3, [4]], 5, 10]));
 // console.log(openBraces([25, 10, [10, [15]]]));
 // console.log(openBraces([1, [2, [{ a: "b" }]]]));
+
+const flatten = arr =>
+  arr.reduce((flattenArr, elem) => {
+    return !Array.isArray(elem) ? flattenArr.concat(elem) : flattenArr.concat(flatten(elem));
+  }, []);
+
+// console.log(flatten([[1, 2],[3, [4]], 5, 1]));
+// console.log(flatten([25, 10, [10, [15]]]));
+// console.log(flatten([1, [2, [{ a: "b" }]]]));
 
 /*
 Виртуализировать таблицу, сделать рендер всей таблицы через JavaScript.
