@@ -98,6 +98,7 @@ const visualArray = arr => {
 visualArray(navigation);
 
 /*  ПРИЛОЖЕНИЕ  */
+// done
 // 1. Форкните репозиторий Саши.
 // Добавьте скрипт который будет рисовать всю страницу с таблицей.
 // https://github.com/aleksandra-maslennikova/my-phone-book
