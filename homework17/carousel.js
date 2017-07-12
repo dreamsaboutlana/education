@@ -1,33 +1,33 @@
 'use strict';
-// let imgArr = ['img/img1.jpg', 'img/img2.jpg', 'img/img3.jpg'];
+let imgArr = ['img/img1.jpg', 'img/img2.jpg', 'img/img3.jpg'];
 
-// const creatSlider = (arr, name) => {
+const creatSlider = (arr, name) => {
 
-//   let body = document.body;
+  let body = document.body;
+  let main = document.createElement('main');
 
-//   let main = document.createElement('main');
+  const createSlides = (arr, name) => {
 
-//   const createSlides = (arr, name) => {
+      let emptyString = `<ul class ="${name}">`;
 
-//       let emptyString = `<ul class ="${name}">`;
+      arr.forEach((elem, index) => {
+        emptyString += `<li><img src="${elem}" alt="${index}"><span class='numberText'>${index+1}/${arr.length}</span></li>`;
+      });
 
-//       arr.forEach((elem, index) => {
-//         emptyString += `<li><img src="${elem}" alt="${index}"><span>${index}</span></li>`;
-//       });
+      emptyString += '</ul>';
 
-//       emptyString += '</ul>';
+      return emptyString;
+    }
 
-//       return emptyString;
-//     }
-//     // ``
-//     // ``
-//   main.innerHTML = createSlides(arr, name);
+  main.innerHTML = createSlides(arr, name);
 
-//   body.appendChild(main);
+  body.appendChild(main);
+  
+  main.insertAdjacentHTML('beforeend', '<button class="left" onclick="plusSlides(-1)"><=</button><button class="right" onclick="plusSlides(1)">=></button>');
 
-// }
+}
 
-// creatSlider(imgArr, 'carousel');
+creatSlider(imgArr, 'carousel');
 
 
 let slideIndex = 1;
@@ -39,7 +39,7 @@ function plusSlides(n) {
 }
 
 function showSlides(n) {
-	
+
   let i;
   let slides = document.querySelectorAll('ul li');
 
