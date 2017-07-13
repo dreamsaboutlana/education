@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+}
+
+ul,
+li,
+img {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  max-width: 748px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  height: 320px;
+  left: 0;
+}
+
+ul {
+  list-style: none;
+  position: relative;
+  width: 2000em;
+  height: 300px;
+  transition: left 500ms linear;
+}
+
+#carousel {
+  left: 0;
+  transform: translate3d(0px, 0px, 0px);
+  transition: left 500ms linear;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+li {
+  float: left;
+  width: 748px;
+  transition: transform 0.6s ease-in-out;
+  /*position: absolute;*/
+  position: relative;
+  /*opacity: 0;*/
+}
+
+button {}
+
+.numberText {
+  color: black;
+  position: absolute;
+  bottom: -20px;
+  margin: 0 50%;
+  text-align: center;
+  display: block;
+}
+
+.right {
+  float: right;
+}
+
+
