@@ -46,7 +46,7 @@ const solution = (arr) => {
   let max = getMax(arr);
   newArr.push(max[0]);
   let cutArr = arr.slice([max[1] + 1]);
-  
+
   if (cutArr.length !== 1 && cutArr.length !== 0) {
     solution(cutArr);
   } else if (cutArr.length) {
@@ -96,6 +96,39 @@ const solution = (arr) => {
 // .topStyle('fetch', {backgroundColor:'blue'})
 
 
+class createStyleInHead {
+
+  topStyle(className, obj) {
+
+    let head = document.getElementsByTagName('head');
+    let keyArr = [];
+    let valueArr = [];
+
+    for (let key in obj) {
+      keyArr.push(key);
+      valueArr.push(obj[key]);
+    }
+
+    let emptyString = `<style>.${className}{`;
+
+    for (let i = 0; i < keyArr.length; i++) {
+      if (i === 0) {
+        emptyString += `${keyArr[i]}:${valueArr[i]}`;
+      } else {
+        emptyString += `;${keyArr[i]}:${valueArr[i]}`;
+      }
+    }
+    emptyString += `</style>`;
+
+    head.insertAdjacentHTML('beforebegin', emptyString);
+  }
+
+};
+
+let test = new createStyleInHead();
+// test.topStyle('fetch', { 'background-color': 'blue', color: 'red' });
+
+
 /* @SUPER
  *
  * Напишите функцию которая будет преобразовывать CSS-свойство в 
@@ -112,7 +145,25 @@ const solution = (arr) => {
  * */
 
 
+const changeable = (value) => {
+
+  let reg = '-';
+  if (value.includes(reg)) {
+    let valueArr = value.split('-');
+    for (let i = 0; i < valueArr.length; i++) {
+      if (i != 0) {
+        valueArr[i] = valueArr[i].slice(0, 1).toUpperCase() + valueArr[i].slice(1);
+      }
+    }
+    return valueArr.join('');
+  }
+}
+
+// console.log(changeable('background-color'));
+// console.log(changeable('border-radius-right'));
 /* 
+
+
 Нужно визуализировать keypad.html -> keypad.js
 Нужно визуализировать index.html -> app.js
 
@@ -136,5 +187,3 @@ https://aleksandra-maslennikova.github.io/telephone-book/keypad.html
 https://aleksandra-maslennikova.github.io/telephone-book/index.html
 По клику по заголовку таблицы, таблица сортировалась по соответствующему свойству
 */
-
-
