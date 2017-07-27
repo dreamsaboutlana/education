@@ -179,6 +179,35 @@ function sensitiveCell(mode = 1) {
 
 sensitiveCell(3);
 
+// const tbody = document.querySelector('table');
+// tbody.addEventListener('click', (e) => {
+//   let blocks = [];
+//   for (let i = 0; i < 5; i++) {
+//     blocks[i] = [];
+//     for (let j = 0; j < 5; j++) {
+//       blocks[i][j] = document.getElementById((i + 1) + '' + (j + 1));
+//     }
+//   }
+// let max = 4;
+//   let min = 0;
+//   for (let i = 0; i < 5; i++) {
+//     for (let j = 0; j < 5; j++) {
+//       if (e.target.id === 'TD') {
+//         // blocks[i][j].addEventListener('click', function() {
+//           e.classList.toggle('red');
+
+//           if (i != j) {
+//             blocks[j][i].classList.toggle('red');
+//           }
+
+//         });
+//       // }
+//     }
+//     e.target.style.backgroundColor = 'red';
+//   }
+// });
+
+
 // @SUPER-FrontEnd
 /*
 
