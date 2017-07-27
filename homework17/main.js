@@ -28,37 +28,49 @@ let fMin;
 let index;
 
 function getMax(arr) {
-  let arrLen = arr.length,
-    maxEl = arr[0];
-  for (let i = 0; i < arrLen; i++) {
-    if (maxEl <= arr[i]) {
-      maxEl = arr[i];
-      index = i;
+    let arrLen = arr.length,
+        maxEl = arr[0];
+    for (let i = 0; i < arrLen; i++) {
+        if (maxEl <= arr[i]) {
+            maxEl = arr[i];
+            index = i;
+        }
     }
-  }
-  return [maxEl, index];
+    return [maxEl, index];
 }
 
 let newArr = [];
 
 const solution = (arr) => {
 
-  let max = getMax(arr);
-  newArr.push(max[0]);
-  let cutArr = arr.slice([max[1] + 1]);
+    let max = getMax(arr);
+    newArr.push(max[0]);
+    let cutArr = arr.slice([max[1] + 1]);
 
-  if (cutArr.length !== 1 && cutArr.length !== 0) {
-    solution(cutArr);
-  } else if (cutArr.length) {
-    newArr.push(cutArr[0]);
-  }
-  return newArr;
+    if (cutArr.length !== 1 && cutArr.length !== 0) {
+        solution(cutArr);
+    } else if (cutArr.length) {
+        newArr.push(cutArr[0]);
+    }
+    return newArr;
 }
 
-// console.log(solution([16, 17, 4,3, 5, 2])); //=== [17, 5, 2]
+
+const qSolution = arr =>
+    arr.filter((elem, index) => {
+        return arr.length - 1 === index ? true : arr.slice(index + 1).every(nextElem => {
+            return nextElem < elem;
+        });
+    });
+
+// console.log(solution([16, 17, 4, 3, 5, 2])); //=== [17, 5, 2]
 // console.log(solution([4, 3, 7, 12, 6, 67, 5, 45, 34, 35, 2, 8])); // [67, 45, 35, 8]
 // console.log(solution([12, 10, 12, 8, 7, 6])); // [12, 8, 7, 6]
 // console.log(solution([1, 2, 3, 4, 5, 4])); // [5, 4]
+// console.log(qSolution([16, 17, 4, 3, 5, 2])); //=== [17, 5, 2]
+// console.log(qSolution([4, 3, 7, 12, 6, 67, 5, 45, 34, 35, 2, 8])); // [67, 45, 35, 8]
+// console.log(qSolution([12, 10, 12, 8, 7, 6])); // [12, 8, 7, 6]
+// console.log(qSolution([1, 2, 3, 4, 5, 4])); // [5, 4]
 
 
 
@@ -98,30 +110,30 @@ const solution = (arr) => {
 
 class createStyleInHead {
 
-  topStyle(className, obj) {
+    topStyle(className, obj) {
 
-    let head = document.getElementsByTagName('head');
-    let keyArr = [];
-    let valueArr = [];
+        let head = document.getElementsByTagName('head');
+        let keyArr = [];
+        let valueArr = [];
 
-    for (let key in obj) {
-      keyArr.push(key);
-      valueArr.push(obj[key]);
+        for (let key in obj) {
+            keyArr.push(key);
+            valueArr.push(obj[key]);
+        }
+
+        let emptyString = `<style>.${className}{`;
+
+        for (let i = 0; i < keyArr.length; i++) {
+            if (i === 0) {
+                emptyString += `${keyArr[i]}:${valueArr[i]}`;
+            } else {
+                emptyString += `;${keyArr[i]}:${valueArr[i]}`;
+            }
+        }
+        emptyString += `</style>`;
+
+        head.insertAdjacentHTML('beforebegin', emptyString);
     }
-
-    let emptyString = `<style>.${className}{`;
-
-    for (let i = 0; i < keyArr.length; i++) {
-      if (i === 0) {
-        emptyString += `${keyArr[i]}:${valueArr[i]}`;
-      } else {
-        emptyString += `;${keyArr[i]}:${valueArr[i]}`;
-      }
-    }
-    emptyString += `</style>`;
-
-    head.insertAdjacentHTML('beforebegin', emptyString);
-  }
 
 };
 
@@ -147,16 +159,16 @@ let test = new createStyleInHead();
 
 const changeable = (value) => {
 
-  let reg = '-';
-  if (value.includes(reg)) {
-    let valueArr = value.split('-');
-    for (let i = 0; i < valueArr.length; i++) {
-      if (i != 0) {
-        valueArr[i] = valueArr[i].slice(0, 1).toUpperCase() + valueArr[i].slice(1);
-      }
+    let reg = '-';
+    if (value.includes(reg)) {
+        let valueArr = value.split('-');
+        for (let i = 0; i < valueArr.length; i++) {
+            if (i != 0) {
+                valueArr[i] = valueArr[i].slice(0, 1).toUpperCase() + valueArr[i].slice(1);
+            }
+        }
+        return valueArr.join('');
     }
-    return valueArr.join('');
-  }
 }
 
 // console.log(changeable('background-color'));
