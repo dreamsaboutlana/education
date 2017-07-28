@@ -98,7 +98,7 @@ Linux:
 
 */
 
-function sensitiveCell(mode = 1) {
+const sensitiveCell = (mode = 1) => {
   let blocks = [];
   for (let i = 0; i < 5; i++) {
     blocks[i] = [];
@@ -109,18 +109,28 @@ function sensitiveCell(mode = 1) {
 
   switch (mode) {
     case 1:
+      //click system
+      //[x][][0]
+      //[][0][]
+      //[0][][x]
       {
         let max = 4;
         let min = 0;
         for (let i = 0; i < 5; i++) {
           for (let j = 0; j < 5; j++) {
-            blocks[i][j].addEventListener('click', function() {
-              blocks[i][j].classList.toggle('red');
+            blocks[i][j].addEventListener('click', () => {
 
               if (i != j) {
+                blocks[i][j].classList.toggle('red');
                 blocks[j][i].classList.toggle('red');
               }
-
+              if (i == j) {
+                blocks[min + i][min + i].classList.toggle('red');
+                blocks[max - i][max - i].classList.toggle('red');
+              }
+              if (i == j && (min + i) === (max - i)) {
+                blocks[j][i].classList.toggle('green');
+              }
             });
           }
         }
@@ -129,11 +139,15 @@ function sensitiveCell(mode = 1) {
 
     case 2:
       {
+        //click system
+        //[x][0][]
+        //[][0][]
+        //[x][0][]
         let maxRow = 5;
         let maxCell = 5;
         for (let i = 0; i < maxRow; i++) {
           for (let j = 0; j < maxCell; j++) {
-            blocks[i][j].addEventListener('click', function() {
+            blocks[i][j].addEventListener('click', () => {
               blocks[i][j].classList.toggle('green');
               if (i != j) {
                 blocks[i][Math.abs(maxCell - j - 1)].classList.toggle('green');
@@ -143,27 +157,28 @@ function sensitiveCell(mode = 1) {
         }
       };
       break;
-
     case 3:
       {
+        //click system
+        //[x][][0]
+        //[][0][]
+        //[0][][x]
         let max = 4;
         let min = 0;
         for (let i = 4; i >= 0; i--) {
           for (let j = 4; j >= 0; j--) {
-            blocks[i][j].addEventListener('click', function() {
+            blocks[i][j].addEventListener('click', () => {
 
               if (i !== j) {
                 blocks[i][j].classList.toggle('red');
                 blocks[j][i].classList.toggle('red');
               }
 
-
-
-              if (i === j) {
+              if (i == j) {
                 blocks[min + i][min + i].classList.toggle('red');
                 blocks[max - i][max - i].classList.toggle('red');
               }
-              if (i === j && (min + i) === (max - i)) {
+              if (i == j && (min + i) === (max - i)) {
                 blocks[j][i].classList.toggle('red');
               }
 
