@@ -22,6 +22,10 @@ arguments ["aa", "bb"] => expected true
 arguments ["aedor", "eiruw"] => expected true
 
 */
+let isomorphicStr = (arr) =>{
+	let str1 = arr[0];
+	let str2 = arr[1];
+}
 
 /*
 Добавить возможность из формы, ДОБАВЛЯТЬ Пользователя на сервер
